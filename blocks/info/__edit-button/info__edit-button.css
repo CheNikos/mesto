@@ -8,3 +8,11 @@
     opacity: 0.5;
     cursor: pointer;
   }
+
+@media all and (max-width: 424px) {
+    .info__edit-button {
+        width: 18px;
+        height: 18px;
+        margin-top: 0;
+   }
+  }

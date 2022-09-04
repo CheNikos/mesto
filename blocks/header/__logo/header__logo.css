@@ -2,3 +2,11 @@
     width: 142px;
     height: 33px;
 }
+
+@media all and (max-width: 424px) {
+    .header {
+        width: 103.74px;
+        height: 24.4px;
+        padding-left: 28px;
+   }
+  }

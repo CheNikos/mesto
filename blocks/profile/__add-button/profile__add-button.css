@@ -6,3 +6,11 @@
     opacity: 0.5;
     cursor: pointer;
   }
+
+  @media all and (max-width: 424px) {
+    .profile__add-button  {
+        min-width: 282px;
+        max-height: 50px;
+        margin-top: 36px;
+   }
+  }
