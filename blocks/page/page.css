@@ -1,9 +1,13 @@
 .page {
     max-width: 1280px;
-    width: 100%;
-    height: 100%;
-    margin: auto;
+    margin: auto auto;
     background-color: rgba(0, 0, 0, 1);
     display: block;
     font-family: 'Inter';
 }
+
+@media all and (max-width: 424px) {
+    .page {
+        max-width: 320px;
+   }
+  }

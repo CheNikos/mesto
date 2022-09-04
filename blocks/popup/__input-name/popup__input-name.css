@@ -8,3 +8,9 @@
     letter-spacing: 0em;
     text-align: left;
 }
+
+@media all and (max-width: 424px) {
+    .popup__input-name  {
+        max-width: 238px;
+    }
+}
