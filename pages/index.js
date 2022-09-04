@@ -19,3 +19,14 @@ close.addEventListener("click", function(event){
     popup.classList.add('popup_opened');
 });
 
+document.querySelector('.popup__button').onclick = clickSave;
+
+function clickSave() {
+  let name = document.querySelector('.popup__input-name').value;
+  document.querySelector('.info__title').textContent = name;
+
+  let job = document.querySelector('.popup__input-job').value;
+  document.querySelector('.info__subtitle').textContent = job;
+
+  popup.classList.add('popup_opened');
+}

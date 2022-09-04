@@ -1,8 +1,9 @@
 .element__like {
-    max-width: 22px;
-    max-height: 19px;
+    min-width: 22px;
+    min-height: 19px;
     margin-right: 15px;
     margin-left: 15px;
+    background-image: url(../../../images/Elements/Group.png);
 }
 
 .element__like:hover {
