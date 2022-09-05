@@ -9,7 +9,7 @@
 @media all and (max-width: 424px) {
     .header {
         width: 320px;
-        min-height: 56px; 
+        min-height: 56px;
         padding-top: 28px;
    }
   }

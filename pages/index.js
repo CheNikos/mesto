@@ -21,7 +21,7 @@ close.addEventListener("click", function(event){
 
 let formElement = document.querySelector('.popup__button').onclick = clickSave;
 
-function clickSave() {
+function clickSave(evt) {
   evt.preventDefault();
   let name = document.querySelector('.popup__input-name').value;
   document.querySelector('.info__title').textContent = name;
