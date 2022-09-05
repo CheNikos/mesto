@@ -1,5 +1,9 @@
 .popup__button {
     margin: 48px 36px 37px 36px;
+    background-image: url(../../../images/popup/Submit-Button.png);
+    background-repeat: no-repeat;
+    min-width: 358px;
+    min-height: 50px;
 }
 
 .popup__button:hover {
@@ -12,5 +16,15 @@
         max-width: 238px;
         min-height: 46px;
         margin: 45px 22px 25px 22px;
+   }
+  }
+
+  @media all and (max-width: 424px) {
+    .popup__button {
+        object-fit: cover;
+        background-size: contain;
+        background-image: url(../../../images/popup/Submit-Button320.png);
+        min-width: 238px;
+        min-height: 46px;
    }
   }

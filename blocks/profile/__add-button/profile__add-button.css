@@ -1,5 +1,9 @@
 .profile__add-button {
     margin-left: auto;
+    background-image: url(../../../images/profile/Add-Button1280.png);
+    background-repeat: no-repeat;
+    min-width: 150px;
+    min-height: 50px;
 }
 
 .profile__add-button:hover {
@@ -8,9 +12,10 @@
   }
 
   @media all and (max-width: 424px) {
-    .profile__add-button  {
+    .profile__add-button {
         min-width: 282px;
-        max-height: 50px;
+        min-height: 50px;
         margin-top: 36px;
+        background-image: url(../../../images/profile/Add-Button320.png);
    }
   }

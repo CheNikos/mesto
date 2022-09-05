@@ -4,9 +4,9 @@
 }
 
 @media all and (max-width: 424px) {
-    .header {
+    .header__logo {
         width: 103.74px;
         height: 24.4px;
-        padding-left: 28px;
+        padding-left: 27px;
    }
   }
