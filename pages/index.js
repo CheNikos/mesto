@@ -19,9 +19,10 @@ close.addEventListener("click", function(event){
     popup.classList.add('popup_opened');
 });
 
-document.querySelector('.popup__button').onclick = clickSave;
+let formElement = document.querySelector('.popup__button').onclick = clickSave;
 
 function clickSave() {
+  evt.preventDefault();
   let name = document.querySelector('.popup__input-name').value;
   document.querySelector('.info__title').textContent = name;
 
@@ -30,3 +31,5 @@ function clickSave() {
 
   popup.classList.add('popup_opened');
 }
+
+formElement.addEventListener('submit', clickSave); 
