@@ -1,19 +1,20 @@
-.info__edit-button {
+.profile__edit-button {
     width: 24px;
     height: 24px;
     margin-top: 8px;
     background-image: url(../../../images/profile/Edit-Button.png);
     background-repeat: no-repeat;
     background-size: contain;
+    background-color: rgba(0, 0, 0, 1);
 }
 
-.info__edit-button:hover {
+.profile__edit-button:hover {
     opacity: 0.5;
     cursor: pointer;
   }
 
 @media all and (max-width: 424px) {
-    .info__edit-button {
+    .profile__edit-button {
         width: 18px;
         height: 18px;
         margin-top: 0;

@@ -1,4 +1,4 @@
-.info {
+.profile__info {
     display: grid;
     grid-template-columns: 1fr 24px;
     grid-template-rows: 39px 18px;
@@ -9,11 +9,11 @@
 }
 
 @media all and (max-width: 424px) {
-    .info {
+    .profile__info {
         max-width: 282px;
         margin-top: 26px;
         text-align: center;
-        column-gap: 10px;
-        row-gap: 14px;
+        column-gap: 14px;
+        row-gap: 10px;
    }
   }

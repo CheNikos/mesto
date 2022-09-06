@@ -1,6 +1,5 @@
 .popup__content {
     max-width: 430px;
-    min-height: 330px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 10px;
     display: block;
@@ -9,6 +8,5 @@
 @media all and (max-width: 424px) {
     .popup__content {
         max-width: 282px;
-        min-height: 322px;
    }
   }
