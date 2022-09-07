@@ -1,6 +1,6 @@
 .popup__button {
     margin: 48px 36px 37px 36px;
-    background-image: url(../../../images/popup/Submit-Button.png);
+    background-image: url(../../../images/popup/SubmitButton.svg);
     background-repeat: no-repeat;
     min-width: 358px;
     min-height: 50px;
@@ -23,7 +23,7 @@
     .popup__button {
         object-fit: cover;
         background-size: contain;
-        background-image: url(../../../images/popup/Submit-Button320.png);
+        background-image: url(../../../images/popup/SubmitButton320.svg);
         min-width: 238px;
         min-height: 46px;
    }

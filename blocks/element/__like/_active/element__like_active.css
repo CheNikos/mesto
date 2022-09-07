@@ -1,4 +1,4 @@
 .element__like_active:active {
-    background-image: url(../../../../images/Elements/Union.png);
+    background-image: url(../../../../images/Elements/Union.svg);
     opacity: 1;
 }

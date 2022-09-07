@@ -1,6 +1,6 @@
 .profile__add-button {
     margin-left: auto;
-    background-image: url(../../../images/profile/Add-Button1280.png);
+    background-image: url(../../../images/profile/AddButton1280.svg);
     background-repeat: no-repeat;
     background-size: contain;
     min-width: 150px;
@@ -16,9 +16,8 @@
   @media all and (max-width: 424px) {
     .profile__add-button {
         min-width: 282px;
-        background-size: cover;
         min-height: 50px;
         margin-top: 36px;
-        background-image: url(../../../images/profile/Add-Button320.png);
+        background-image: url(../../../images/profile/AddButton320.svg);
    }
   }

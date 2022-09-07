@@ -15,10 +15,10 @@ let formSubmit = document.querySelector('.popup__button').onclick = clickSave;
 
 function clickSave(evt) {
   evt.preventDefault();
-  let name = document.querySelector('.popup__input-name').value;
+  let name = document.querySelector('.popup__input_form_name').value;
   document.querySelector('.profile__title').textContent = name;
 
-  let job = document.querySelector('.popup__input-job').value;
+  let job = document.querySelector('.popup__input_form_job').value;
   document.querySelector('.profile__subtitle').textContent = job;
 
   formElement.classList.remove('popup_opened');
