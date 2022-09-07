@@ -2,8 +2,12 @@
     margin: 48px 36px 37px 36px;
     background-image: url(../../../images/popup/SubmitButton.svg);
     background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: cover;
     min-width: 358px;
     min-height: 50px;
+    padding: 0;
+    border: 0;
 }
 
 .popup__button:hover {
@@ -21,8 +25,6 @@
 
   @media all and (max-width: 424px) {
     .popup__button {
-        object-fit: cover;
-        background-size: contain;
         background-image: url(../../../images/popup/SubmitButton320.svg);
         min-width: 238px;
         min-height: 46px;

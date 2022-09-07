@@ -6,6 +6,9 @@
     min-height: 32px;
     background-color: rgba(0, 0, 0, 1);
     background-size: contain;
+    background-repeat: no-repeat;
+    padding: 0;
+    border: 0;
 }
 
 .popup__close:hover {
@@ -19,5 +22,7 @@
         min-width: 20px;
         min-height: 20px;
         margin: 0 19px 16px auto;
+        object-fit: cover;
+        background-size: cover;
    }
   }
