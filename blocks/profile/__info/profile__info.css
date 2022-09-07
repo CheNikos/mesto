@@ -8,7 +8,7 @@
     margin-left: 30px;
 }
 
-@media all and (max-width: 424px) {
+@media all and (max-width: 583px) {
     .profile__info {
         max-width: 282px;
         margin-top: 26px;

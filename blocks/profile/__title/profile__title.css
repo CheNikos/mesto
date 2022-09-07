@@ -11,7 +11,7 @@
     overflow: hidden;
 }
 
-@media all and (max-width: 424px) {
+@media all and (max-width: 583px) {
     .profile__title {
         line-height: 33px;
         font-size: 27px;

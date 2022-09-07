@@ -5,7 +5,7 @@
     margin-bottom: 60px;
 }
 
-@media all and (max-width: 424px) {
+@media all and (max-width: 583px) {
     .footer {
         max-width: 282px;
         padding-top: 48px;

@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-@media all and (max-width: 424px) {
+@media all and (max-width: 583px) {
     .profile {
         max-width: 282px;
         padding-top: 42px;

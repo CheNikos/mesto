@@ -6,7 +6,7 @@
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
-@media all and (max-width: 424px) {
+@media all and (max-width: 583px) {
     .header {
         width: 320px;
         min-height: 56px;
