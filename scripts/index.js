@@ -17,7 +17,7 @@ function PopupClose() {
   Popup.classList.remove('popup_opened');
 };
 
-function formSubmitHandler (evt) {
+function formSubmitHandler(evt) {
   evt.preventDefault();
   titleName.textContent = nameInput.value;
   subtitleJob.textContent = jobInput.value;
