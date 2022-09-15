@@ -6,6 +6,11 @@ let nameInput = document.querySelector('.popup__input_form_name');
 let jobInput = document.querySelector('.popup__input_form_job');
 let titleName = document.querySelector('.profile__title');
 let subtitleJob = document.querySelector('.profile__subtitle');
+let Like = document.querySelectorAll('.element__like');
+
+Like.forEach(putLike => {
+  putLike.addEventListener('click', () => putLike.classList.toggle('element__like_active'));
+});
 
 function PopupOpen() {
   Popup.classList.add('popup_opened');
