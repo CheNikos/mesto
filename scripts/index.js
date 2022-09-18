@@ -82,15 +82,25 @@ function renderItem(item) {
 
 function setListenersForItem(element) {
   const cardLike = element.querySelector('.element__like');
-  cardLike.addEventListener('click', () => {
-    console.log('cardLike')
-  });
+  cardLike.addEventListener('click', likeCard);
 
   const cardTrash = element.querySelector('.element__trash');
-  cardTrash.addEventListener('click', () => {
-    console.log('cardTrash')
-  });
+  cardTrash.addEventListener('click', cardDelete);
 }
+
+function cardDelete(event) {
+  const currentListItem = event.target.closest('.element');
+  currentListItem.remove();
+  resetEditMode();
+}
+
+function likeCard(event) {
+  const currentListItem = event.target.closest('.element__like');
+  currentListItem.classList.toggle('element__like_active');
+};
+
+
+
 
 
 
