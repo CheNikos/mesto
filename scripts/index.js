@@ -36,15 +36,6 @@ createCard.addEventListener('click', PopupOpen);
 
 
 
-
-
-
-
-
-
-
-
-
 const items = [
   {
     name: 'Архыз',
@@ -85,13 +76,37 @@ function renderItem(item) {
   const cardImage = newHtmlElement.querySelector('.element__image');
   cardText.textContent = item.name;
   cardImage.src = item.link;
+  setListenersForItem(newHtmlElement);
 	cards.appendChild(newHtmlElement);
 }
 
+function setListenersForItem(element) {
+  const cardLike = element.querySelector('.element__like');
+  cardLike.addEventListener('click', () => {
+    console.log('cardLike')
+  });
+
+  const cardTrash = element.querySelector('.element__trash');
+  cardTrash.addEventListener('click', () => {
+    console.log('cardTrash')
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 render()
-
-
-
 
 
 
