@@ -35,6 +35,16 @@ formElement.addEventListener('submit', formSubmitHandler);
 createCard.addEventListener('click', PopupOpen);
 
 
+
+
+
+
+
+
+
+
+
+
 const items = [
   {
     name: 'Архыз',
@@ -62,43 +72,97 @@ const items = [
   }
 ];
 
-const cards = document.querySelector('.elements')
+const cards = document.querySelector('.elements');
+const itemTemplate = document.querySelector('.element__template').content;
 
-function renderItems() {
-  const elements = items.map(createItem);
-  
-  cards.append(...elements);
+function render() {
+	items.forEach(renderItem);
 }
 
-function createItem(item) {
-  const cardFull = document.createElement('div');
-  cardFull.classList.add('element');
-
-  const cardTrash = document.createElement('button');
-  cardTrash.classList.add('element__trash');
-
-  const cardImage = document.createElement('img');
-  cardImage.classList.add('element__image');
+function renderItem(item) {
+	const newHtmlElement = itemTemplate.cloneNode(true);
+	const cardText = newHtmlElement.querySelector('.element__title');
+  const cardImage = newHtmlElement.querySelector('.element__image');
+  cardText.textContent = item.name;
   cardImage.src = item.link;
-
-  const cardText = document.createElement('div');
-  cardText.classList.add('element__text');
-
-  const cardTitle = document.createElement('h2');
-  cardTitle.classList.add('element__title');
-  cardTitle.textContent = item.name;
-
-  const cardLike = document.createElement('button');
-  cardLike.classList.add('element__like');
-  cardLike.addEventListener('click', likeCard);
-  function likeCard() {
-  cardLike.classList.toggle('element__like_active');
-  };
-
-  cardFull.append(cardTrash, cardImage, cardText);
-  cardText.append(cardTitle, cardLike);
-  
-  return cardFull;
+	cards.appendChild(newHtmlElement);
 }
 
-renderItems()
+render()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//const cards = document.querySelector('.elements')
+//
+//function renderItems() {
+//  const elements = items.map(createItem);
+//  
+//  cards.append(...elements);
+//}
+
+//function createItem(item) {
+ // const cardFull = document.createElement('div');
+ // cardFull.classList.add('element');
+//
+//  const cardTrash = document.createElement('button');
+//  cardTrash.classList.add('element__trash');
+
+//  const cardImage = document.createElement('img');
+// cardImage.classList.add('element__image');
+//  cardImage.src = item.link;
+//
+//  const cardText = document.createElement('div');
+// cardText.classList.add('element__text');
+//
+//  const cardTitle = document.createElement('h2');
+ // cardTitle.classList.add('element__title');
+ // cardTitle.textContent = item.name;
+
+ // const cardLike = document.createElement('button');
+ // cardLike.classList.add('element__like');
+ // cardLike.addEventListener('click', likeCard);
+ // function likeCard() {
+ // cardLike.classList.toggle('element__like_active');
+ // };
+
+ // cardFull.append(cardTrash, cardImage, cardText);
+ // cardText.append(cardTitle, cardLike);
+  
+ // return cardFull;
+//}
+
+//renderItems()
