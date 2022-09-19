@@ -7,6 +7,27 @@ let jobInput = document.querySelector('.popup__input_form_job');
 let titleName = document.querySelector('.profile__title');
 let subtitleJob = document.querySelector('.profile__subtitle');
 
+
+//попап новых карточек
+const cardCreate = document.querySelector('.popup_new');
+const openCardCreate = document.querySelector('.profile__add-button');
+const closeCardCreate = document.querySelector('.popup__close_new');
+let cardFormElement = document.querySelector('.popup__inputs_new');
+let cardNameInput = document.querySelector('.popup__input_form_name');
+let cardLinkInput = document.querySelector('.popup__input_form_link');
+
+function cardCreateOpen() {
+  cardCreate.classList.add('popup_opened');
+};
+
+function CardCreateСlose() {
+  cardCreate.classList.remove('popup_opened');
+};
+
+openCardCreate.addEventListener('click', cardCreateOpen);
+closeCardCreate.addEventListener('click', CardCreateСlose);
+
+//попап профиля
 function PopupOpen() {
   Popup.classList.add('popup_opened');
   nameInput.value = titleName.textContent;
@@ -29,7 +50,7 @@ closePopup.addEventListener('click', PopupClose);
 formElement.addEventListener('submit', formSubmitHandler);
 
 
-
+//добавление карточек на страницу
 const items = [
   {
     name: 'Архыз',
@@ -81,14 +102,6 @@ function setListenersForItem(element) {
 
   const cardTrash = element.querySelector('.element__trash');
   cardTrash.addEventListener('click', cardDelete);
-
-  const zoomImage = element.querySelector('.element__image');
-  zoomImage.addEventListener('click', imageZoom);
-}
-
-function imageZoom(event) {
-  const currentListItem = event.target.closest('.element__image');
-  currentListItem.classList.add('element__zoom');
 }
 
 function cardDelete(event) {
@@ -104,3 +117,5 @@ function likeCard(event) {
 
 
 render()
+
+
