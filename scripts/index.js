@@ -102,7 +102,18 @@ function setListenersForItem(element) {
 
   const cardTrash = element.querySelector('.element__trash');
   cardTrash.addEventListener('click', cardDelete);
+
+  const zoomImage = element.querySelector('.element__image');
+  zoomImage.addEventListener('click', imageZoom);
 }
+
+function imageZoom(event) {
+  const currentListItem = event.target.closest('.element__image');
+  const bigImage = document.querySelector('.popup__zoom-image');
+  bigImage.src = currentListItem.src
+  const openZoom = document.querySelector('.popup_zoom');
+  openZoom.classList.add('popup_opened');
+};
 
 function cardDelete(event) {
   const currentListItem = event.target.closest('.element');
