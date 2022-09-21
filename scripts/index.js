@@ -110,9 +110,19 @@ function setListenersForItem(element) {
 function imageZoom(event) {
   const currentListItem = event.target.closest('.element__image');
   const bigImage = document.querySelector('.popup__zoom-image');
-  bigImage.src = currentListItem.src
   const openZoom = document.querySelector('.popup_zoom');
   openZoom.classList.add('popup_opened');
+  bigImage.src = currentListItem.src;
+  
+  const textCard = document.querySelector('.element__title');
+  const textImage = document.querySelector('.popup__name-zoom');
+  textImage.textContent = textCard.textContent;
+
+  const closeBigImage = document.querySelector('.popup__close_zoom')
+  function closeImage(){
+    openZoom.classList.remove('popup_opened');
+  }
+  closeBigImage.addEventListener('click', closeImage);
 };
 
 function cardDelete(event) {
