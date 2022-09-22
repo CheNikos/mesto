@@ -105,6 +105,11 @@ function setListenersForItem(element) {
 
   const zoomImage = element.querySelector('.element__image');
   zoomImage.addEventListener('click', imageZoom);
+  zoomImage.addEventListener('click', () => {
+     textImage.textContent = textCard.textContent;
+  });
+  const textCard = element.querySelector('.element__title');
+  const textImage = document.querySelector('.popup__name-zoom');
 }
 
 function imageZoom(event) {
@@ -113,10 +118,6 @@ function imageZoom(event) {
   const openZoom = document.querySelector('.popup_zoom');
   openZoom.classList.add('popup_opened');
   bigImage.src = currentListItem.src;
-  
-  const textCard = document.querySelector('.element__title');
-  const textImage = document.querySelector('.popup__name-zoom');
-  textImage.textContent = textCard.textContent;
 
   const closeBigImage = document.querySelector('.popup__close_zoom')
   function closeImage(){
