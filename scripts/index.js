@@ -1,7 +1,7 @@
 let Popup = document.querySelector('.popup');
 let openPopup = document.querySelector('.profile__edit-button');
 let closePopup = document.querySelector('.popup__close');
-let formElement = document.querySelector('.popup__inputs');
+let formElement = document.querySelector('.popup__form');
 let nameInput = document.querySelector('.popup__input_form_name');
 let jobInput = document.querySelector('.popup__input_form_job');
 let titleName = document.querySelector('.profile__title');
@@ -117,7 +117,7 @@ function likeCard(event) {
 const newCardName = document.querySelector('.popup__input_card_name');
 const newCardLink = document.querySelector('.popup__input_card_link');
 const addNewCard = document.querySelector('.popup__button_new');
-let formElementNewCard = document.querySelector('.popup__inputs_new');
+let formElementNewCard = document.querySelector('.popup__form_new');
 
 function formSubmitNewCard(evt) {
   evt.preventDefault();
