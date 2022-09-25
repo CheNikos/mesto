@@ -56,16 +56,14 @@ closePopupProfile.addEventListener('click', closePopupEditProfile);
 formElementProfile.addEventListener('submit', submitHandlerProfile);
 
 
-
-
 const cards = document.querySelector('.elements');
-const itemTemplate = document.querySelector('.element__template').content;
 
 function renderInitialCards() {
 	initialCards.forEach(renderItem);
 }
 
 function renderItem(item) {
+  const itemTemplate = document.querySelector('.element__template').content;
 	const newCardsElement = itemTemplate.cloneNode(true);
 	const cardText = newCardsElement.querySelector('.element__title');
   const cardImage = newCardsElement.querySelector('.element__image');
