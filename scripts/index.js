@@ -41,6 +41,7 @@ let formElementNewCard = document.querySelector('.popup__form_new');
 const bigImage = document.querySelector('.popup__zoom-image');
 const openZoom = document.querySelector('.popup_zoom');
 const closeBigImage = document.querySelector('.popup__close_zoom');
+const nameZoom = document.querySelector('.popup__name-zoom');
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
@@ -51,6 +52,7 @@ function closePopup (popup) {
 
 function openPopupEditProfile() {
   openPopup(editProfilePopup);
+
   nameInput.value = titleName.textContent;
   jobInput.value = subtitleJob.textContent;
 };
@@ -61,8 +63,10 @@ function closePopupEditProfile() {
 
 function submitHandlerProfile(evt) {
   evt.preventDefault();
+
   titleName.textContent = nameInput.value;
   subtitleJob.textContent = jobInput.value;
+
   closePopup(editProfilePopup);
 };
 
@@ -80,7 +84,9 @@ function formSubmitNewCard(evt) {
 
   userNewCard.name = newCardName.value;
   userNewCard.link = newCardLink.value;
+
 	cards.prepend(createCard(userNewCard));
+
   newCardName.value = "";
   newCardLink.value = "";
 
@@ -115,20 +121,21 @@ function setListenersForCard(element) {
   const cardTrash = element.querySelector('.element__trash');
   cardTrash.addEventListener('click', deleteCard);
 
+  const zoomImageName = element.querySelector('.element__title').textContent;
   const zoomImage = element.querySelector('.element__image');
   zoomImage.addEventListener('click', openZoomImage);
-  zoomImage.addEventListener('click', () => {
-    zoomImageText.textContent = textCard.textContent;
-  });
-  const textCard = element.querySelector('.element__title');
-  const zoomImageText = document.querySelector('.popup__name-zoom');
 }
 
 function openZoomImage(event) {
-  const currentListItem = event.target.closest('.element__image');
-  openPopup(openZoom);
+  const element = event.currentTarget.parentElement;
+  const currentListItem = element.querySelector('.element__image');
+  const currentListText = element.querySelector('.element__title').textContent;
+
   bigImage.src = currentListItem.src;
-  bigImage.alt = currentListItem.alt;
+  nameZoom.textContent = currentListText;
+  bigImage.alt = currentListText;
+
+  openPopup(openZoom);
 };
 
 function closeZoomImagePopup(){
@@ -137,6 +144,7 @@ function closeZoomImagePopup(){
 
 function deleteCard(event) {
   const currentListItem = event.target.closest('.element');
+
   currentListItem.remove();
 }
 
@@ -147,6 +155,7 @@ function likeCard(event) {
 const createCardPopup = document.querySelector('.popup_new');
 const openCreateCardPopupButton = document.querySelector('.profile__add-button');
 const closeCreateCardPopupButton = document.querySelector('.popup__close_new');
+
 closeBigImage.addEventListener('click', closeZoomImagePopup);
 
 function cardCreateOpen() {
