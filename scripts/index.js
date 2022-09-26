@@ -38,22 +38,32 @@ const newCardName = document.querySelector('.popup__input_card_name');
 const newCardLink = document.querySelector('.popup__input_card_link');
 const addNewCard = document.querySelector('.popup__button_new');
 let formElementNewCard = document.querySelector('.popup__form_new');
+const bigImage = document.querySelector('.popup__zoom-image');
+const openZoom = document.querySelector('.popup_zoom');
+const closeBigImage = document.querySelector('.popup__close_zoom');
+
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
+}
+function closePopup (popup) {
+  popup.classList.remove('popup_opened');
+}
 
 function openPopupEditProfile() {
-  editProfilePopup.classList.add('popup_opened');
+  openPopup(editProfilePopup);
   nameInput.value = titleName.textContent;
   jobInput.value = subtitleJob.textContent;
 };
 
 function closePopupEditProfile() {
-  editProfilePopup.classList.remove('popup_opened');
+  closePopup(editProfilePopup);
 };
 
 function submitHandlerProfile(evt) {
   evt.preventDefault();
   titleName.textContent = nameInput.value;
   subtitleJob.textContent = jobInput.value;
-  closePopupEditProfile();
+  closePopup(editProfilePopup);
 };
 
 openPopupProfile.addEventListener('click', openPopupEditProfile);
@@ -116,18 +126,14 @@ function setListenersForCard(element) {
 
 function openZoomImage(event) {
   const currentListItem = event.target.closest('.element__image');
-  const bigImage = document.querySelector('.popup__zoom-image');
-  const openZoom = document.querySelector('.popup_zoom');
-  openZoom.classList.add('popup_opened');
+  openPopup(openZoom);
   bigImage.src = currentListItem.src;
   bigImage.alt = currentListItem.alt;
-
-  const closeBigImage = document.querySelector('.popup__close_zoom')
-  function closeZoomImagePopup(){
-    openZoom.classList.remove('popup_opened');
-  }
-  closeBigImage.addEventListener('click', closeZoomImagePopup);
 };
+
+function closeZoomImagePopup(){
+  closePopup(openZoom);
+}
 
 function deleteCard(event) {
   const currentListItem = event.target.closest('.element');
@@ -141,13 +147,14 @@ function likeCard(event) {
 const createCardPopup = document.querySelector('.popup_new');
 const openCreateCardPopupButton = document.querySelector('.profile__add-button');
 const closeCreateCardPopupButton = document.querySelector('.popup__close_new');
+closeBigImage.addEventListener('click', closeZoomImagePopup);
 
 function cardCreateOpen() {
-  createCardPopup.classList.add('popup_opened');
+  openPopup(createCardPopup);
 };
 
 function CardCreateСlose() {
-  createCardPopup.classList.remove('popup_opened');
+  closePopup(createCardPopup);
 };
 
 openCreateCardPopupButton.addEventListener('click', cardCreateOpen);
