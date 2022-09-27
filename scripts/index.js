@@ -31,13 +31,13 @@ const closePopupProfile = document.querySelector('.popup__close');
 const formElementProfile = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_form_name');
 const jobInput = document.querySelector('.popup__input_form_job');
-let titleName = document.querySelector('.profile__title');
-let subtitleJob = document.querySelector('.profile__subtitle');
+const titleName = document.querySelector('.profile__title');
+const subtitleJob = document.querySelector('.profile__subtitle');
 const cards = document.querySelector('.elements');
 const newCardName = document.querySelector('.popup__input_card_name');
 const newCardLink = document.querySelector('.popup__input_card_link');
 const addNewCard = document.querySelector('.popup__button_new');
-let formElementNewCard = document.querySelector('.popup__form_new');
+const formElementNewCard = document.querySelector('.popup__form_new');
 const bigImage = document.querySelector('.popup__zoom-image');
 const openZoom = document.querySelector('.popup_zoom');
 const closeBigImage = document.querySelector('.popup__close_zoom');
@@ -74,7 +74,7 @@ openPopupProfile.addEventListener('click', openPopupEditProfile);
 closePopupProfile.addEventListener('click', closePopupEditProfile);
 formElementProfile.addEventListener('submit', submitHandlerProfile);
 
-function formSubmitNewCard(evt) {
+function submitNewCardForm(evt) {
   evt.preventDefault();
 
   const userNewCard = {
@@ -109,9 +109,9 @@ function createCard(item) {
 }
 
 function renderInitialCards() {
-	const initialCardsList = initialCards.map(createCard);
+  const initialCardsList = initialCards.map(createCard);
   
-	cards.prepend(...initialCardsList);
+  cards.prepend(...initialCardsList);
 }
 
 function setListenersForCard(element) {
@@ -149,7 +149,7 @@ function deleteCard(event) {
 }
 
 function likeCard(event) {
-  let currentListItem = event.target.classList.toggle('element__like_active');
+  event.target.classList.toggle('element__like_active');
 };
 
 const createCardPopup = document.querySelector('.popup_new');
@@ -158,17 +158,17 @@ const closeCreateCardPopupButton = document.querySelector('.popup__close_new');
 
 closeBigImage.addEventListener('click', closeZoomImagePopup);
 
-function cardCreateOpen() {
+function openCardCreate() {
   openPopup(createCardPopup);
 };
 
-function CardCreateСlose() {
+function closeCardCreate() {
   closePopup(createCardPopup);
 };
 
-openCreateCardPopupButton.addEventListener('click', cardCreateOpen);
-closeCreateCardPopupButton.addEventListener('click', CardCreateСlose);
-formElementNewCard.addEventListener('submit', formSubmitNewCard)
+openCreateCardPopupButton.addEventListener('click', openCardCreate);
+closeCreateCardPopupButton.addEventListener('click', closeCardCreate);
+formElementNewCard.addEventListener('submit', submitNewCardForm)
 
 
 renderInitialCards()
