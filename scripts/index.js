@@ -168,7 +168,7 @@ function closeCardCreate() {
 
 openCreateCardPopupButton.addEventListener('click', openCardCreate);
 closeCreateCardPopupButton.addEventListener('click', closeCardCreate);
-formElementNewCard.addEventListener('submit', submitNewCardForm)
+formElementNewCard.addEventListener('submit', submitNewCardForm);
 
 
 renderInitialCards()

@@ -1,18 +1,28 @@
 .popup__button {
-    background-image: url(../../../images/popup/SubmitButton.svg);
-    background-repeat: no-repeat;
-    object-fit: cover;
-    background-size: cover;
-    min-width: 358px;
-    min-height: 50px;
     padding: 0;
-    border: 0;
     margin-top: 48px;
+    width: 358px;
+    height: 50.15px;
+    left: 107px;
+    top: 293px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+.popup__button:disabled {
+    background-color: white;
+    color: black;
+    cursor: auto;
+    opacity: 0.2;
+}
+
+.popup__button:hover:disabled {
+    opacity: 0.2;
 }
 
 .popup__button:hover {
     opacity: 0.7;
-    cursor: pointer;
 }
 
 @media all and (max-width: 424px) {
