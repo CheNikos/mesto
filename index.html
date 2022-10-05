@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./pages/index.css">
   <script defer src="./scripts/index.js"></script>
+  <script defer src="./scripts/validate.js"></script>
   <title>Место</title>
 </head>
 
@@ -36,9 +37,11 @@
     <div class="popup__container">
         <div class="popup__content">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="popup_text" class="popup__form">
-            <input type="text" name="popup_input_name" placeholder="Имя" class="popup__input popup__input_form_name" />
-            <input type="text" name="popup_input_job" placeholder="О Себе" class="popup__input popup__input_form_job" />
+            <form name="popup_text" class="popup__form" novalidate>
+            <input type="text" name="popup_input_name" id='popup_input_profile' placeholder="Имя" required minlength="2" maxlength="40" class="popup__input popup__input_form_name" />
+            <span class='popup__input_form_error' id='name-input-error'></span>
+            <input type="text" name="popup_input_job" id='popup_input_profile' placeholder="О Себе" required minlength="2" maxlength="200" class="popup__input popup__input_form_job" />
+            <span class='popup__input_form_error' id='job-input-error'></span>
             <button aria-label="Сохранить" class="popup__button" type="submit" disabled>Сохранить</button>
             </form>
         </div>
@@ -53,7 +56,7 @@
             <form name="popup_text" class="popup__form popup__form_new">
             <input type="text" required name="popup_input_name" placeholder="Название" class="popup__input popup__input_card_name" />
             <input type="url" required name="popup_input_link" placeholder="Ссылка на картинку" class="popup__input popup__input_card_link" />
-            <button aria-label="Сохранить" class="popup__button popup__button_new" type="submit"></button>
+            <button aria-label="Сохранить" class="popup__button popup__button_new" type="submit" disabled>Сохранить</button>
             </form>
         </div>
             <button aria-label="Закрыть" class="popup__close popup__close_new" type="button"></button>
