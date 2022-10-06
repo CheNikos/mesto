@@ -90,7 +90,7 @@ function submitNewCardForm(evt) {
   newCardName.value = "";
   newCardLink.value = "";
 
-  CardCreateСlose()
+  closeCardCreate();
 }
 
 function createCard(item) {
