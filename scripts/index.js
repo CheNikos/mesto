@@ -25,6 +25,7 @@ const initialCards = [
   }
 ];
 
+const popupOverlay = document.querySelector('.popup__overlay');
 const editProfilePopup = document.querySelector('.popup_edit_profile');
 const openPopupProfile = document.querySelector('.profile__edit-button');
 const closePopupProfile = document.querySelector('.popup__close');
@@ -57,6 +58,12 @@ function openPopupEditProfile() {
   jobInput.value = subtitleJob.textContent;
 };
 
+function closePopupOverlay() {
+  closePopup(editProfilePopup);
+  closePopup(createCardPopup);
+  closePopup(openZoom)
+}
+
 function closePopupEditProfile() {
   closePopup(editProfilePopup);
 };
@@ -73,13 +80,17 @@ function submitHandlerProfile(evt) {
 openPopupProfile.addEventListener('click', openPopupEditProfile);
 closePopupProfile.addEventListener('click', closePopupEditProfile);
 formElementProfile.addEventListener('submit', submitHandlerProfile);
-document.addEventListener('keydown', (event) => {
-  const key = event.key;
-  if (key === "Escape") {
-    closePopup(editProfilePopup);
-    closePopup(createCardPopup);
-    closePopup(openZoom)
-  }
+document.addEventListener('keydown', (evt) => {
+  const key = evt.key;
+    if (key === "Escape") {
+      closePopupOverlay()
+    }
+  })
+  popupOverlay.addEventListener('click', (evt) => {
+    const click = evt.click;
+      if (!click) {
+        closePopupOverlay()
+      }
 })
 
 function submitNewCardForm(evt) {

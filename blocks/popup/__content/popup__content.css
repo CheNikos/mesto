@@ -4,6 +4,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    z-index: 5;
 }
 
 @media all and (max-width: 424px) {
