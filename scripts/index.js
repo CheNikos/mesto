@@ -43,10 +43,10 @@ const openZoom = document.querySelector('.popup_zoom');
 const closeBigImage = document.querySelector('.popup__close_zoom');
 const nameZoom = document.querySelector('.popup__name-zoom');
 
-function openPopup (popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
-function closePopup (popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
@@ -73,6 +73,14 @@ function submitHandlerProfile(evt) {
 openPopupProfile.addEventListener('click', openPopupEditProfile);
 closePopupProfile.addEventListener('click', closePopupEditProfile);
 formElementProfile.addEventListener('submit', submitHandlerProfile);
+document.addEventListener('keydown', (event) => {
+  const key = event.key;
+  if (key === "Escape") {
+    closePopup(editProfilePopup);
+    closePopup(createCardPopup);
+    closePopup(openZoom)
+  }
+})
 
 function submitNewCardForm(evt) {
   evt.preventDefault();
