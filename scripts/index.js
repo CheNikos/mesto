@@ -25,7 +25,7 @@ const initialCards = [
   }
 ];
 
-const popupOverlay = document.querySelector('.popup__overlay');
+const popupOverlay = document.querySelectorAll('.popup__overlay');
 const editProfilePopup = document.querySelector('.popup_edit_profile');
 const openPopupProfile = document.querySelector('.profile__edit-button');
 const closePopupProfile = document.querySelector('.popup__close');
@@ -85,13 +85,11 @@ document.addEventListener('keydown', (evt) => {
     if (key === "Escape") {
       closePopupOverlay()
     }
-  })
-  popupOverlay.addEventListener('click', (evt) => {
-    const click = evt.click;
-      if (!click) {
-        closePopupOverlay()
-      }
-})
+   })
+
+popupOverlay.forEach((e) => {
+  e.addEventListener('click', closePopupOverlay)
+});
 
 function submitNewCardForm(evt) {
   evt.preventDefault();
