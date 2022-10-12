@@ -3,7 +3,7 @@ const settingsList = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: '.popup__error_input'
+  inputErrorClass: '.popup__error'
 }
 
 function enableValidation(elements) {
