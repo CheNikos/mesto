@@ -14,18 +14,11 @@
     opacity: 0.7;
 }
 
-@media all and (max-width: 424px) {
-    .popup__button {
-        max-width: 238px;
-        min-height: 46px;
-        margin-top: 45px;
-   }
-  }
-
   @media all and (max-width: 424px) {
     .popup__button {
-        background-image: url(../../../images/popup/SubmitButton320.svg);
-        min-width: 238px;
-        min-height: 46px;
+        height: 46px;
+        width: 238px;
+        left: 41px;
+        top: 373px;
    }
   }
