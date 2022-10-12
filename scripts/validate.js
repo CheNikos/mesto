@@ -3,7 +3,7 @@ const settingsList = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: '.popup__input_form_error'
+  inputErrorClass: '.popup__form_error_input'
 }
 
 function enableValidation(elements) {
@@ -55,13 +55,13 @@ function checkInputValidity(elementsForm, inputElements, elements) {
 function showInputError(elementsForm, inputElements, errorMessage, elements) {
   inputElements.nextElementSibling.textContent = errorMessage;
   inputElements.classList.add(elements.inputErrorClass);
-  inputElements.classList.add('popup__input_type_error');
+  inputElements.classList.add('popup__form_error_type');
 }
 
 function hideInputError(elementsForm, inputElements, elements) {
   inputElements.nextElementSibling.textContent = "";
   inputElements.classList.remove(elements.inputErrorClass);
-  inputElements.classList.remove('popup__input_type_error');
+  inputElements.classList.remove('popup__form_error_type');
 }
 
 enableValidation(settingsList);
