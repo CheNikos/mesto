@@ -6,4 +6,12 @@
     letter-spacing: 0em;
     text-align: left;
     margin-top: 5px;
+    position: absolute;
+    max-width: 358px;
 }
+
+@media all and (max-width: 424px) {
+    .popup__error {
+        max-width: 238px;
+   }
+  }
