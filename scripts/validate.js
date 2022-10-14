@@ -3,15 +3,13 @@ const settingsList = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: '.popup__error'
+  inputErrorClass: '.popup__error',
+  inputErrorBorderBottom: 'popup__error_type'
 }
 
 function enableValidation(elements) {
   const formList = Array.from(document.querySelectorAll(elements.formSelector));
   formList.forEach((elementsForm) => {
-    elementsForm.addEventListener('submit', evt => {
-      evt.preventDefault();
-    });
     setEventListeners(elementsForm, elements);
   });
 }
@@ -55,13 +53,13 @@ function checkInputValidity(elementsForm, inputElements, elements) {
 function showInputError(elementsForm, inputElements, errorMessage, elements) {
   inputElements.nextElementSibling.textContent = errorMessage;
   inputElements.classList.add(elements.inputErrorClass);
-  inputElements.classList.add('popup__error_type');
+  inputElements.classList.add(elements.inputErrorBorderBottom);
 }
 
 function hideInputError(elementsForm, inputElements, elements) {
   inputElements.nextElementSibling.textContent = "";
   inputElements.classList.remove(elements.inputErrorClass);
-  inputElements.classList.remove('popup__error_type');
+  inputElements.classList.remove(elements.inputErrorBorderBottom);
 }
 
 enableValidation(settingsList);
