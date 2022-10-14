@@ -46,9 +46,11 @@ const zoomName = document.querySelector('.popup__name-zoom');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 function openPopupEditProfile() {
@@ -80,12 +82,13 @@ function submitHandlerProfile(evt) {
 popupOpenProfile.addEventListener('click', openPopupEditProfile);
 popupCloseProfile.addEventListener('click', closePopupEditProfile);
 formElementProfile.addEventListener('submit', submitHandlerProfile);
-document.addEventListener('keydown', (evt) => {
-  const key = evt.key;
-    if (key === "Escape") {
-      closePopupOverlay()
-    }
-   })
+
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup);
+  }
+} 
 
 popupOverlay.forEach((e) => {
   e.addEventListener('click', closePopupOverlay)
