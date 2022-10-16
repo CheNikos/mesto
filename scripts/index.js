@@ -25,7 +25,7 @@ const initialCards = [
   }
 ];
 
-const popupOverlay = document.querySelectorAll('.popup__overlay');
+const popups = document.querySelectorAll('.popup')
 const profileEditPopup = document.querySelector('.popup_edit_profile');
 const popupOpenProfile = document.querySelector('.profile__edit-button');
 const popupCloseProfile = document.querySelector('.popup__close');
@@ -90,8 +90,12 @@ function closeByEscape(evt) {
   }
 } 
 
-popupOverlay.forEach((e) => {
-  e.addEventListener('click', closePopupOverlay)
+popups.forEach(popup => {
+  popup.addEventListener('mousedown', evt => {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__overlay')) {
+      closePopup(popup);
+    }
+  });
 });
 
 function submitNewCardForm(evt) {
