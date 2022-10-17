@@ -43,6 +43,7 @@ const imageBig = document.querySelector('.popup__zoom-image');
 const zoomOpen = document.querySelector('.popup_zoom');
 const imageBigZoom = document.querySelector('.popup__close_zoom');
 const zoomName = document.querySelector('.popup__name-zoom');
+const itemTemplate = document.querySelector('.element__template').content;
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -115,10 +116,12 @@ function submitNewCardForm(evt) {
   cardNewLink.value = "";
 
   closeCardCreate();
+  
+  cardNewAdd.setAttribute('disabled', true);
+  cardNewAdd.classList.add('popup__button_disabled');
 }
 
 function createCard(item) {
-  const itemTemplate = document.querySelector('.element__template').content;
 	const cardsNewElement = itemTemplate.cloneNode(true);
 	const cardText = cardsNewElement.querySelector('.element__title');
   const cardImage = cardsNewElement.querySelector('.element__image');
@@ -184,8 +187,6 @@ imageBigZoom.addEventListener('click', closeZoomImagePopup);
 
 function openCardCreate() {
   openPopup(cardCreatePopup);
-  cardNewAdd.setAttribute('disabled', true);
-  cardNewAdd.classList.add('popup__button_disabled');
 };
 
 function closeCardCreate() {
