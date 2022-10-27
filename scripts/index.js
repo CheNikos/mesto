@@ -1,3 +1,5 @@
+import Card from './Сard.js';
+
 const initialCards = [
   {
     name: 'Архыз',
