@@ -26,20 +26,56 @@ const initialCards = [
   ];
 
 export default class Card {
-    constructor() {
-        this._title = title;
-        this._image = image;
+    constructor(name, link) {
+      this._name = name
+      this._link = link
     }
 
     _getTemplate() {
-        const cardElement = document
-        .querySelector('.element__template')
-        .content
-        .querySelector('.element')
-        .cloneNode(true);
-    
-    return cardElement;
+      const cardElement = document
+      .querySelector('.element__template')
+      .content
+      .querySelector('.element')
+      .cloneNode(true);
+      
+      return cardElement;
+    }
+
+    generateCard() {
+      this._element = this._getTemplate();
+      this._setEventListeners();
+      this._element.querySelector('.element__image').src = `${this._link}`;
+      this._element.querySelector('.element__title').textContent = this._name;
+  
+      return this._element; 
+    }
+
+    _setLikeButton() {
+      this._setLikeButton.classList.toggle('element__like_active');
+    }
+
+    _deleteCard() {
+      this._element.remove();
+    }
+
+    _setEventListeners() {
+      this._likeButton = this._element.querySelector('.element__like');
+      console.log(this._likeButton)
+      this._likeButton.addEventListener('click', () => {
+        console.log(fff)
+      });
+
+      this._trashButton = this._element.querySelector('.element__trash');
+      console.log(this._trashButton)
+      this._trashButton.addEventListener('click', () => {
+        console.log(fff)
+      });
     }
 }
 
-console.log(Card)
+initialCards.forEach((item) => {
+  const card = new Card(item.name, item.link);
+  const cardElement = card.generateCard();
+
+  document.querySelector('.elements').append(cardElement);
+}); 

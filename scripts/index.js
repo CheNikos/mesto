@@ -1,31 +1,31 @@
 import Card from './Сard.js';
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Амстердам',
-    link: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-  },
-  {
-    name: 'Гент',
-    link: 'https://images.unsplash.com/photo-1609716637664-ed0ebc5201b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-  },
-  {
-    name: 'Крым',
-    link: 'https://images.unsplash.com/photo-1599758417353-3b66f35e5d79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
-  },
-  {
-    name: 'Сиена',
-    link: 'https://images.unsplash.com/photo-1612820676918-1682b0d4afa0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+// const initialCards = [
+//   {
+//     name: 'Архыз',
+//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+//   },
+//   {
+//     name: 'Амстердам',
+//     link: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+//   },
+//   {
+//     name: 'Гент',
+//     link: 'https://images.unsplash.com/photo-1609716637664-ed0ebc5201b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+//   },
+//   {
+//     name: 'Крым',
+//     link: 'https://images.unsplash.com/photo-1599758417353-3b66f35e5d79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
+//   },
+//   {
+//     name: 'Сиена',
+//     link: 'https://images.unsplash.com/photo-1612820676918-1682b0d4afa0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
+//   },
+//   {
+//     name: 'Байкал',
+//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+//   }
+// ];
 
 const popups = document.querySelectorAll('.popup')
 const profileEditPopup = document.querySelector('.popup_edit_profile');
@@ -101,54 +101,54 @@ popups.forEach(popup => {
   });
 });
 
-function submitNewCardForm(evt) {
-  evt.preventDefault();
+// function submitNewCardForm(evt) {
+//   evt.preventDefault();
 
-  const userNewCard = {
-    name:'',
-    link:'',
-  };
+//   const userNewCard = {
+//     name:'',
+//     link:'',
+//   };
 
-  userNewCard.name = cardNewName.value;
-  userNewCard.link = cardNewLink.value;
+//   userNewCard.name = cardNewName.value;
+//   userNewCard.link = cardNewLink.value;
 
-	cards.prepend(createCard(userNewCard));
+// 	cards.prepend(createCard(userNewCard));
 
-  cardNewName.value = "";
-  cardNewLink.value = "";
+//   cardNewName.value = "";
+//   cardNewLink.value = "";
 
-  closeCardCreate();
+//   closeCardCreate();
   
-  cardNewAdd.setAttribute('disabled', true);
-  cardNewAdd.classList.add('popup__button_disabled');
-}
+//   cardNewAdd.setAttribute('disabled', true);
+//   cardNewAdd.classList.add('popup__button_disabled');
+// }
 
-function createCard(item) {
-	const cardsNewElement = itemTemplate.cloneNode(true);
-	const cardText = cardsNewElement.querySelector('.element__title');
-  const cardImage = cardsNewElement.querySelector('.element__image');
+// function createCard(item) {
+// 	const cardsNewElement = itemTemplate.cloneNode(true);
+// 	const cardText = cardsNewElement.querySelector('.element__title');
+//   const cardImage = cardsNewElement.querySelector('.element__image');
 
-  cardText.textContent = item.name;
-  cardImage.src = item.link;
-  cardImage.alt = item.name;
+//   cardText.textContent = item.name;
+//   cardImage.src = item.link;
+//   cardImage.alt = item.name;
 
-  setListenersForCard(cardsNewElement);
+//   setListenersForCard(cardsNewElement);
 
-  return cardsNewElement;
-}
+//   return cardsNewElement;
+// }
 
-function renderInitialCards() {
-  const initialCardsList = initialCards.map(createCard);
+// function renderInitialCards() {
+//   const initialCardsList = initialCards.map(createCard);
   
-  cards.prepend(...initialCardsList);
-}
+//   cards.prepend(...initialCardsList);
+// }
 
 function setListenersForCard(element) {
-  const cardLike = element.querySelector('.element__like');
-  cardLike.addEventListener('click', likeCard);
+  // const cardLike = element.querySelector('.element__like');
+  // cardLike.addEventListener('click', likeCard);
 
-  const cardTrash = element.querySelector('.element__trash');
-  cardTrash.addEventListener('click', deleteCard);
+  // const cardTrash = element.querySelector('.element__trash');
+  // cardTrash.addEventListener('click', deleteCard);
 
   const zoomImageName = element.querySelector('.element__title').textContent;
   const zoomImage = element.querySelector('.element__image');
@@ -171,15 +171,15 @@ function closeZoomImagePopup(){
   closePopup(zoomOpen);
 }
 
-function deleteCard(event) {
-  const currentListItem = event.target.closest('.element');
+// function deleteCard(event) {
+//   const currentListItem = event.target.closest('.element');
 
-  currentListItem.remove();
-}
+//   currentListItem.remove();
+// }
 
-function likeCard(event) {
-  event.target.classList.toggle('element__like_active');
-};
+// function likeCard(event) {
+//   event.target.classList.toggle('element__like_active');
+// };
 
 const cardCreatePopup = document.querySelector('.popup_new');
 const cardOpenCreatePopupButton = document.querySelector('.profile__add-button');
@@ -197,9 +197,9 @@ function closeCardCreate() {
 
 cardOpenCreatePopupButton.addEventListener('click', openCardCreate);
 cardCloseCreatePopupButton.addEventListener('click', closeCardCreate);
-formElementNewCard.addEventListener('submit', submitNewCardForm);
+// formElementNewCard.addEventListener('submit', submitNewCardForm);
 
 
-renderInitialCards()
+// renderInitialCards()
 
 
