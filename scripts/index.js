@@ -150,9 +150,9 @@ function setListenersForCard(element) {
   // const cardTrash = element.querySelector('.element__trash');
   // cardTrash.addEventListener('click', deleteCard);
 
-  const zoomImageName = element.querySelector('.element__title').textContent;
-  const zoomImage = element.querySelector('.element__image');
-  zoomImage.addEventListener('click', openZoomImage);
+  // const zoomImageName = element.querySelector('.element__title').textContent;
+  // const zoomImage = element.querySelector('.element__image');
+  // zoomImage.addEventListener('click', openZoomImage);
 }
 
 function openZoomImage(event) {

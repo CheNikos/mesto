@@ -43,32 +43,37 @@ export default class Card {
 
     generateCard() {
       this._element = this._getTemplate();
-      this._setEventListeners();
       this._element.querySelector('.element__image').src = `${this._link}`;
+      this._element.querySelector('.element__image').alt = this._name;
       this._element.querySelector('.element__title').textContent = this._name;
+
+      this._setEventListeners();
   
       return this._element; 
     }
 
-    _setLikeButton() {
-      this._setLikeButton.classList.toggle('element__like_active');
-    }
-
-    _deleteCard() {
-      this._element.remove();
-    }
-
     _setEventListeners() {
       this._likeButton = this._element.querySelector('.element__like');
-      console.log(this._likeButton)
       this._likeButton.addEventListener('click', () => {
-        console.log(fff)
+        this._likeButton.classList.toggle('element__like_active');
       });
 
       this._trashButton = this._element.querySelector('.element__trash');
-      console.log(this._trashButton)
       this._trashButton.addEventListener('click', () => {
-        console.log(fff)
+      this._element.remove();
+      });
+
+      this._zoomImageName = this._element.querySelector('.element__title').textContent;
+      this._zoomImage = this._element.querySelector('.element__image');
+      this._zoomImage.addEventListener('click', () => {
+      this._currentListItem = this._element.querySelector('.element__image');
+      this._currentListText = this._element.querySelector('.element__title').textContent;
+      
+      imageBig.src = currentListItem.src;
+      zoomName.textContent = currentListText;
+      imageBig.alt = currentListText;
+      
+      openPopup(zoomOpen);
       });
     }
 }
