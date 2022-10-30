@@ -63,11 +63,11 @@ function openPopupEditProfile() {
   jobInput.value = subtitleJob.textContent;
 };
 
-function closePopupOverlay() {
-  closePopup(profileEditPopup);
-  closePopup(cardCreatePopup);
-  closePopup(zoomOpen)
-}
+// function closePopupOverlay() {
+//   closePopup(profileEditPopup);
+//   closePopup(cardCreatePopup);
+//   closePopup(zoomOpen)
+// }
 
 function closePopupEditProfile() {
   closePopup(profileEditPopup);
@@ -101,41 +101,33 @@ popups.forEach(popup => {
   });
 });
 
-// function submitNewCardForm(evt) {
-//   evt.preventDefault();
+function submitNewCardForm(evt) {
+  evt.preventDefault();
 
-//   const userNewCard = {
-//     name:'',
-//     link:'',
-//   };
+  const userNewCard = {
+    name:'',
+    link:'',
+  };
 
-//   userNewCard.name = cardNewName.value;
-//   userNewCard.link = cardNewLink.value;
+  userNewCard.name = cardNewName.value;
+  userNewCard.link = cardNewLink.value;
 
-// 	cards.prepend(createCard(userNewCard));
+	cards.prepend(createCard(userNewCard));
 
-//   cardNewName.value = "";
-//   cardNewLink.value = "";
+  cardNewName.value = "";
+  cardNewLink.value = "";
 
-//   closeCardCreate();
+  closeCardCreate();
   
-//   cardNewAdd.setAttribute('disabled', true);
-//   cardNewAdd.classList.add('popup__button_disabled');
-// }
+  cardNewAdd.setAttribute('disabled', true);
+  cardNewAdd.classList.add('popup__button_disabled');
+}
 
-// function createCard(item) {
-// 	const cardsNewElement = itemTemplate.cloneNode(true);
-// 	const cardText = cardsNewElement.querySelector('.element__title');
-//   const cardImage = cardsNewElement.querySelector('.element__image');
+function createCard(object) {
+	const cardsNewElement = new Card(object, openZoomImage).createCard();
 
-//   cardText.textContent = item.name;
-//   cardImage.src = item.link;
-//   cardImage.alt = item.name;
-
-//   setListenersForCard(cardsNewElement);
-
-//   return cardsNewElement;
-// }
+  return cardsNewElement;
+}
 
 // function renderInitialCards() {
 //   const initialCardsList = initialCards.map(createCard);
@@ -143,22 +135,28 @@ popups.forEach(popup => {
 //   cards.prepend(...initialCardsList);
 // }
 
-function setListenersForCard(element) {
-  // const cardLike = element.querySelector('.element__like');
-  // cardLike.addEventListener('click', likeCard);
+// function openZoomImage(image, title) {
+//   imageBig.src = image;
+//   imageBig.alt = title;
+//   zoomName.textContent = title;
+//   openPopup(zoomOpen)
+// }
 
-  // const cardTrash = element.querySelector('.element__trash');
-  // cardTrash.addEventListener('click', deleteCard);
+// function setListenersForCard(element) {
+//   // const cardLike = element.querySelector('.element__like');
+//   // cardLike.addEventListener('click', likeCard);
 
-  // const zoomImageName = element.querySelector('.element__title').textContent;
-  // const zoomImage = element.querySelector('.element__image');
-  // zoomImage.addEventListener('click', openZoomImage);
-}
+//   // const cardTrash = element.querySelector('.element__trash');
+//   // cardTrash.addEventListener('click', deleteCard);
 
-function openZoomImage(event) {
-  const element = event.currentTarget.parentElement;
-  const currentListItem = element.querySelector('.element__image');
-  const currentListText = element.querySelector('.element__title').textContent;
+//   const zoomImageName = element.querySelector('.element__title').textContent;
+//   const zoomImage = element.querySelector('.element__image');
+//   zoomImage.addEventListener('click', openZoomImage);
+// }
+
+function openZoomImage() {
+  const currentListItem = document.querySelector('.element__image');
+  const currentListText = document.querySelector('.element__title').textContent;
 
   imageBig.src = currentListItem.src;
   zoomName.textContent = currentListText;
@@ -197,7 +195,7 @@ function closeCardCreate() {
 
 cardOpenCreatePopupButton.addEventListener('click', openCardCreate);
 cardCloseCreatePopupButton.addEventListener('click', closeCardCreate);
-// formElementNewCard.addEventListener('submit', submitNewCardForm);
+formElementNewCard.addEventListener('submit', submitNewCardForm);
 
 
 // renderInitialCards()

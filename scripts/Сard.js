@@ -26,9 +26,10 @@ const initialCards = [
   ];
 
 export default class Card {
-    constructor(name, link) {
-      this._name = name
-      this._link = link
+    constructor(object, openZoomImage) {
+      this._name = object.name
+      this._link = object.link
+      this._openZoomImage = openZoomImage
     }
 
     _getTemplate() {
@@ -41,9 +42,10 @@ export default class Card {
       return cardElement;
     }
 
-    generateCard() {
+    createCard() {
       this._element = this._getTemplate();
-      this._element.querySelector('.element__image').src = `${this._link}`;
+      
+      this._element.querySelector('.element__image').src = this._link;
       this._element.querySelector('.element__image').alt = this._name;
       this._element.querySelector('.element__title').textContent = this._name;
 
@@ -54,33 +56,26 @@ export default class Card {
 
     _setEventListeners() {
       this._likeButton = this._element.querySelector('.element__like');
+      this._trashButton = this._element.querySelector('.element__trash');
+      this._zoomImage = this._element.querySelector('.element__image');
+
       this._likeButton.addEventListener('click', () => {
-        this._likeButton.classList.toggle('element__like_active');
+      this._likeButton.classList.toggle('element__like_active');
       });
 
-      this._trashButton = this._element.querySelector('.element__trash');
       this._trashButton.addEventListener('click', () => {
       this._element.remove();
       });
 
-      this._zoomImageName = this._element.querySelector('.element__title').textContent;
-      this._zoomImage = this._element.querySelector('.element__image');
       this._zoomImage.addEventListener('click', () => {
-      this._currentListItem = this._element.querySelector('.element__image');
-      this._currentListText = this._element.querySelector('.element__title').textContent;
-      
-      imageBig.src = currentListItem.src;
-      zoomName.textContent = currentListText;
-      imageBig.alt = currentListText;
-      
-      openPopup(zoomOpen);
+      this._openZoomImage(this._link, this._name)
       });
     }
 }
 
-initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link);
-  const cardElement = card.generateCard();
+initialCards.forEach((object) => {
+  const card = new Card(object);
+  const cardElement = card.createCard();
 
   document.querySelector('.elements').append(cardElement);
 }); 
