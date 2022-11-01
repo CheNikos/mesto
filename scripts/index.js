@@ -1,6 +1,15 @@
 import Card from './Сard.js';
 import { initialCards } from './initialCards.js';
-// import FormValidator from './FormValidator.js';
+import FormValidator from './FormValidator.js';
+
+const settingsList = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: '.popup__error',
+    inputErrorBorderBottom: 'popup__error_type'
+  }
 
 const popups = document.querySelectorAll('.popup')
 const profileEditPopup = document.querySelector('.popup_edit_profile');
@@ -130,3 +139,10 @@ initialCards.forEach((object) => {
 
   document.querySelector('.elements').append(cardElement);
 }); 
+
+
+// const formValidatorProfile = new FormValidator (settingsList, profileEditPopup);
+// formValidatorProfile.enableValidation()
+
+// const formValidatorCreateCard = new FormValidator (settingsList, cardCreatePopup);
+// formValidatorCreateCard.enableValidation()

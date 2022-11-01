@@ -7,14 +7,7 @@
 //     inputErrorBorderBottom: 'popup__error_type'
 //   }
 
-// export default class FormValidator {
-//     constructor(config, formSelector) {
-//     }
-
-//     enableValidation(elements) {
-//       const formList = Array.from(document.querySelectorAll(elements.formSelector));
-//       formList.forEach((elementsForm) => {
-//         setEventListeners(elementsForm, elements);
-//       });
-//     }
-// }
+export default class FormValidator {
+    constructor(config, formSelector) {
+    }
+}
