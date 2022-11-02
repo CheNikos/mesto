@@ -12,7 +12,7 @@ const settingsList = {
   }
 
 const popups = document.querySelectorAll('.popup')
-const profileEditPopup = document.querySelector('.popup_edit_profile');
+const profileEditPopup = document.querySelector('.popup_type_profile-edit');
 const popupOpenProfile = document.querySelector('.profile__edit-button');
 const popupCloseProfile = document.querySelector('.popup__close');
 const formElementProfile = document.querySelector('.popup__form');
@@ -26,10 +26,10 @@ const cardNewLink = document.querySelector('.popup__input_card_link');
 const cardNewAdd = document.querySelector('.popup__button_new');
 const formElementNewCard = document.querySelector('.popup__form_new');
 const imageBig = document.querySelector('.popup__zoom-image');
-const zoomOpen = document.querySelector('.popup_zoom');
+const zoomOpen = document.querySelector('.popup_type_zoom-image');
 const imageBigZoom = document.querySelector('.popup__close_zoom');
 const zoomName = document.querySelector('.popup__name-zoom');
-const cardCreatePopup = document.querySelector('.popup_new');
+const cardCreatePopup = document.querySelector('.popup_type_create-card');
 const cardOpenCreatePopupButton = document.querySelector('.profile__add-button');
 const cardCloseCreatePopupButton = document.querySelector('.popup__close_new');
 
@@ -93,12 +93,9 @@ function submitNewCardForm(evt) {
   evt.preventDefault();
 
   const userNewCard = {
-    name:'',
-    link:'',
+    name: cardNewName.value,
+    link: cardNewLink.value,
   };
-
-  userNewCard.name = cardNewName.value;
-  userNewCard.link = cardNewLink.value;
 
 	cards.prepend(createCard(userNewCard));
 

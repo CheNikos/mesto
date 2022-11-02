@@ -6,13 +6,11 @@ export default class Card {
     }
 
     _getTemplate() {
-      const cardElement = document
+      return document
       .querySelector('.element__template')
       .content
       .querySelector('.element')
       .cloneNode(true);
-      
-      return cardElement;
     }
 
     createCard() {
@@ -33,15 +31,15 @@ export default class Card {
       this._zoomImage = this._element.querySelector('.element__image');
 
       this._likeButton.addEventListener('click', () => {
-      this._likeButton.classList.toggle('element__like_active');
+        this._likeButton.classList.toggle('element__like_active');
       });
 
       this._trashButton.addEventListener('click', () => {
-      this._element.remove();
+        this._element.remove();
       });
 
       this._zoomImage.addEventListener('click', () => {
-      this._openZoomImage(this._name, this._link)
+        this._openZoomImage(this._name, this._link)
       });
     }
 }

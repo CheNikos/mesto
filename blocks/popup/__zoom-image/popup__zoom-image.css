@@ -2,6 +2,7 @@
     max-width: 75vw;
     max-height: 75vh;
     margin-right: 40px;
+    z-index: 5;
 }
 
 @media all and (max-width: 583px) {
