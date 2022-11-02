@@ -5,7 +5,7 @@ import FormValidator from './FormValidator.js';
 const settingsList = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
+    submitButtonElement: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: '.popup__error',
     inputErrorBorderBottom: 'popup__error_type'
@@ -141,8 +141,8 @@ initialCards.forEach((object) => {
 }); 
 
 
-// const formValidatorProfile = new FormValidator (settingsList, profileEditPopup);
-// formValidatorProfile.enableValidation()
+const formValidatorProfile = new FormValidator (settingsList, profileEditPopup);
+formValidatorProfile.enableValidation()
 
-// const formValidatorCreateCard = new FormValidator (settingsList, cardCreatePopup);
-// formValidatorCreateCard.enableValidation()
+const formValidatorCreateCard = new FormValidator (settingsList, cardCreatePopup);
+formValidatorCreateCard.enableValidation()
