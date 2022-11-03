@@ -8,7 +8,8 @@ const settingsList = {
     submitButtonElement: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: '.popup__error',
-    inputErrorBorderBottom: 'popup__error_type'
+    inputErrorBorderBottom: 'popup__error_type',
+    cardNewAdd: '.popup__button_new'
   }
 
 const popups = document.querySelectorAll('.popup')
@@ -23,7 +24,6 @@ const subtitleJob = document.querySelector('.profile__subtitle');
 const cards = document.querySelector('.elements');
 const cardNewName = document.querySelector('.popup__input_card_name');
 const cardNewLink = document.querySelector('.popup__input_card_link');
-const cardNewAdd = document.querySelector('.popup__button_new');
 const formElementNewCard = document.querySelector('.popup__form_new');
 const imageBig = document.querySelector('.popup__zoom-image');
 const zoomOpen = document.querySelector('.popup_type_zoom-image');
@@ -48,6 +48,7 @@ function closePopupEditProfile() {
 
 function openPopupEditProfile() {
   openPopup(profileEditPopup);
+  formValidatorProfile.enableValidation()
 
   nameInput.value = titleName.textContent;
   jobInput.value = subtitleJob.textContent;
@@ -59,6 +60,7 @@ function closeZoomImagePopup(){
 
 function openCardCreate() {
   openPopup(cardCreatePopup);
+  formValidatorCreateCard.enableValidation()
 };
 
 function closeCardCreate() {
@@ -103,9 +105,8 @@ function submitNewCardForm(evt) {
   cardNewLink.value = "";
 
   closeCardCreate();
-  
-  cardNewAdd.setAttribute('disabled', true);
-  cardNewAdd.classList.add('popup__button_disabled');
+
+  disableButton.disableButtonAfterCreate();
 }
 
 function createCard(object) {
@@ -113,6 +114,11 @@ function createCard(object) {
 
   return cardsNewElement;
 }
+
+initialCards.forEach((object) => {
+  const card = createCard(object);
+  cards.append(card);
+}); 
 
 function openZoomImage(name, link) {
   imageBig.src = link;
@@ -130,16 +136,6 @@ popupCloseProfile.addEventListener('click', closePopupEditProfile);
 formElementProfile.addEventListener('submit', submitHandlerProfile);
 imageBigZoom.addEventListener('click', closeZoomImagePopup);
 
-initialCards.forEach((object) => {
-  const card = new Card(object, openZoomImage);
-  const cardElement = card.createCard();
-
-  document.querySelector('.elements').append(cardElement);
-}); 
-
-
 const formValidatorProfile = new FormValidator (settingsList, profileEditPopup);
-formValidatorProfile.enableValidation()
-
 const formValidatorCreateCard = new FormValidator (settingsList, cardCreatePopup);
-formValidatorCreateCard.enableValidation()
+const disableButton = new FormValidator (settingsList, cardCreatePopup);

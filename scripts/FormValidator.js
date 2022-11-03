@@ -6,6 +6,8 @@ export default class FormValidator {
         this._inactiveButtonClass = config.inactiveButtonClass
         this._inputErrorClass = config.inputErrorClass
         this._inputErrorBorderBottom = config.inputErrorBorderBottom
+        this._cardNewAdd = config.cardNewAdd
+        this._buttonCreateElement = this._formSelector.querySelector(this._submitButtonElement)
         this._buttonElement = this._formSelector.querySelector(this._submitButtonElement)
         this._inputList =  Array.from(this._formSelector.querySelectorAll(this._inputSelector))
     }
@@ -18,6 +20,11 @@ export default class FormValidator {
             this._toggleButtonState();
             });
         });
+    }
+
+    disableButtonAfterCreate() {
+        this._buttonCreateElement.setAttribute('disabled', true);
+        this._buttonCreateElement.classList.add('popup__button_disabled');
     }
 
     _hasInvalidInput() {
