@@ -48,7 +48,6 @@ function closePopupEditProfile() {
 
 function openPopupEditProfile() {
   openPopup(profileEditPopup);
-  formValidatorProfile.enableValidation()
 
   nameInput.value = titleName.textContent;
   jobInput.value = subtitleJob.textContent;
@@ -60,7 +59,6 @@ function closeZoomImagePopup(){
 
 function openCardCreate() {
   openPopup(cardCreatePopup);
-  formValidatorCreateCard.enableValidation()
 };
 
 function closeCardCreate() {
@@ -106,7 +104,7 @@ function submitNewCardForm(evt) {
 
   closeCardCreate();
 
-  disableButton.disableButtonAfterCreate();
+  formValidatorCreateCard.disableSubmitButton()
 }
 
 function createCard(object) {
@@ -138,4 +136,6 @@ imageBigZoom.addEventListener('click', closeZoomImagePopup);
 
 const formValidatorProfile = new FormValidator (settingsList, profileEditPopup);
 const formValidatorCreateCard = new FormValidator (settingsList, cardCreatePopup);
-const disableButton = new FormValidator (settingsList, cardCreatePopup);
+
+formValidatorCreateCard.enableValidation()
+formValidatorProfile.enableValidation()

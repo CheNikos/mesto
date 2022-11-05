@@ -22,11 +22,6 @@ export default class FormValidator {
         });
     }
 
-    disableButtonAfterCreate() {
-        this._buttonCreateElement.setAttribute('disabled', true);
-        this._buttonCreateElement.classList.add('popup__button_disabled');
-    }
-
     _hasInvalidInput() {
           return this._inputList.some((inputElement) => {
             return !inputElement.validity.valid;
@@ -35,18 +30,18 @@ export default class FormValidator {
 
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._enableSubmitButton()
+            this.disableSubmitButton()
         } else {
-            this._disableSubmitButton()
+            this._enableSubmitButton()
         }
     }
 
-    _enableSubmitButton() {
+    disableSubmitButton() {
         this._buttonElement.classList.add(this._inactiveButtonClass);
         this._buttonElement.setAttribute('disabled', true);
     }
-
-    _disableSubmitButton() {
+    
+    _enableSubmitButton() {
         this._buttonElement.classList.remove(this._inactiveButtonClass);
         this._buttonElement.removeAttribute('disabled')
     }
