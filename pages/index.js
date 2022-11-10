@@ -1,37 +1,55 @@
-import Card from './Сard.js';
-import { initialCards } from './initialCards.js';
-import FormValidator from './FormValidator.js';
+import Card from '../components/Сard.js';
+import { initialCards } from '../utils/initialCards.js';
+import Section from '../components/Section.js';
+import FormValidator from '../components/FormValidator.js';
+import { settingsList, 
+  popups, 
+  profileEditPopup, 
+  popupOpenProfile, 
+  popupCloseProfile, 
+  formElementProfile, 
+  nameInput, 
+  jobInput, 
+  titleName, 
+  subtitleJob, 
+  cards, 
+  cardNewName, 
+  cardNewLink, 
+  formElementNewCard, 
+  imageBig, 
+  zoomOpen, 
+  imageBigZoom, 
+  zoomName, 
+  cardCreatePopup, 
+  cardOpenCreatePopupButton, 
+  cardCloseCreatePopupButton } from '../utils/constants.js';
 
-const settingsList = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonElement: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: '.popup__error',
-    inputErrorBorderBottom: 'popup__error_type',
-    cardNewAdd: '.popup__button_new'
-  }
+import Popup from '../components/Popup.js'
 
-const popups = document.querySelectorAll('.popup')
-const profileEditPopup = document.querySelector('.popup_type_profile-edit');
-const popupOpenProfile = document.querySelector('.profile__edit-button');
-const popupCloseProfile = document.querySelector('.popup__close');
-const formElementProfile = document.querySelector('.popup__form');
-const nameInput = document.querySelector('.popup__input_form_name');
-const jobInput = document.querySelector('.popup__input_form_job');
-const titleName = document.querySelector('.profile__title');
-const subtitleJob = document.querySelector('.profile__subtitle');
-const cards = document.querySelector('.elements');
-const cardNewName = document.querySelector('.popup__input_card_name');
-const cardNewLink = document.querySelector('.popup__input_card_link');
-const formElementNewCard = document.querySelector('.popup__form_new');
-const imageBig = document.querySelector('.popup__zoom-image');
-const zoomOpen = document.querySelector('.popup_type_zoom-image');
-const imageBigZoom = document.querySelector('.popup__close_zoom');
-const zoomName = document.querySelector('.popup__name-zoom');
-const cardCreatePopup = document.querySelector('.popup_type_create-card');
-const cardOpenCreatePopupButton = document.querySelector('.profile__add-button');
-const cardCloseCreatePopupButton = document.querySelector('.popup__close_new');
+
+
+
+// добавление карточек и отрисовка
+
+function createCard(object) {
+  const cardsNewElement = new Card(object, openZoomImage).createCard();
+  
+  return cardsNewElement;
+}
+  
+const cardList = new Section({
+  items: initialCards,
+  renderer: (data) => {
+    cardList.addItem(createCard(data));
+  },
+  containerSelector: '.elements'
+});
+  
+cardList.renderItems();
+
+
+
+
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -106,17 +124,6 @@ function submitNewCardForm(evt) {
 
   formValidatorCreateCard.disableSubmitButton()
 }
-
-function createCard(object) {
-	const cardsNewElement = new Card(object, openZoomImage).createCard();
-
-  return cardsNewElement;
-}
-
-initialCards.forEach((object) => {
-  const card = createCard(object);
-  cards.append(card);
-}); 
 
 function openZoomImage(name, link) {
   imageBig.src = link;
