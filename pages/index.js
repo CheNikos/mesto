@@ -25,6 +25,8 @@ import { settingsList,
   cardCloseCreatePopupButton } from '../utils/constants.js';
 
 import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithForm from '../components/PopupWithForm.js'
+
 
 
 
@@ -56,8 +58,6 @@ popupZoomImage.setEventListeners();
 function handleCardClick(object) {
   popupZoomImage.open(object);
 };
-
-// imageBigZoom.addEventListener('click', closeZoomImagePopup);
 
 
 
