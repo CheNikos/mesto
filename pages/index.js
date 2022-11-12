@@ -24,18 +24,12 @@ import { settingsList,
   cardOpenCreatePopupButton, 
   cardCloseCreatePopupButton } from '../utils/constants.js';
 
-import Popup from '../components/Popup.js'
+import PopupWithImage from '../components/PopupWithImage.js'
 
 
 
 
 // добавление карточек и отрисовка
-
-function createCard(object) {
-  const cardsNewElement = new Card(object, openZoomImage).createCard();
-  
-  return cardsNewElement;
-}
   
 const cardList = new Section({
   items: initialCards,
@@ -46,6 +40,34 @@ const cardList = new Section({
 });
   
 cardList.renderItems();
+
+function createCard(object) {
+  const cardsNewElement = new Card(object, handleCardClick).createCard();
+  
+  return cardsNewElement;
+}
+
+
+// попапы
+
+const popupZoomImage = new PopupWithImage('.popup_type_zoom-image');
+popupZoomImage.setEventListeners();
+
+function handleCardClick(object) {
+  popupZoomImage.open(object);
+};
+
+// imageBigZoom.addEventListener('click', closeZoomImagePopup);
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -70,10 +92,6 @@ function openPopupEditProfile() {
   nameInput.value = titleName.textContent;
   jobInput.value = subtitleJob.textContent;
 };
-
-function closeZoomImagePopup(){
-  closePopup(zoomOpen);
-}
 
 function openCardCreate() {
   openPopup(cardCreatePopup);
@@ -125,21 +143,12 @@ function submitNewCardForm(evt) {
   formValidatorCreateCard.disableSubmitButton()
 }
 
-function openZoomImage(name, link) {
-  imageBig.src = link;
-  zoomName.textContent = name;
-  imageBig.alt = name;
-
-  openPopup(zoomOpen);
-};
-
 cardOpenCreatePopupButton.addEventListener('click', openCardCreate);
 cardCloseCreatePopupButton.addEventListener('click', closeCardCreate);
 formElementNewCard.addEventListener('submit', submitNewCardForm);
 popupOpenProfile.addEventListener('click', openPopupEditProfile);
 popupCloseProfile.addEventListener('click', closePopupEditProfile);
 formElementProfile.addEventListener('submit', submitHandlerProfile);
-imageBigZoom.addEventListener('click', closeZoomImagePopup);
 
 const formValidatorProfile = new FormValidator (settingsList, profileEditPopup);
 const formValidatorCreateCard = new FormValidator (settingsList, cardCreatePopup);

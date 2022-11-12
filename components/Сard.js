@@ -1,8 +1,9 @@
 export default class Card {
-    constructor(object, openZoomImage) {
+    constructor(object, handleCardClick) {
+      this._object = object
       this._name = object.name
       this._link = object.link
-      this._openZoomImage = openZoomImage
+      this._handleCardClick = handleCardClick
     }
 
     _getTemplate() {
@@ -39,7 +40,7 @@ export default class Card {
       });
 
       this._zoomImage.addEventListener('click', () => {
-        this._openZoomImage(this._name, this._link)
+        this._handleCardClick(this._object)
       });
     }
 }
