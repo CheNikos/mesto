@@ -2,37 +2,11 @@ import Card from '../components/Сard.js';
 import { initialCards } from '../utils/initialCards.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
-import { settingsList, 
-  popups, 
-  profileEditPopup, 
-  popupOpenProfile, 
-  popupCloseProfile, 
-  formElementProfile, 
-  nameInput, 
-  jobInput, 
-  titleName, 
-  subtitleJob, 
-  cards, 
-  cardNewName, 
-  cardNewLink, 
-  formElementNewCard, 
-  imageBig, 
-  zoomOpen, 
-  imageBigZoom, 
-  zoomName, 
-  cardCreatePopup, 
-  cardOpenCreatePopupButton, 
-  cardCloseCreatePopupButton } from '../utils/constants.js';
-
+import { settingsList, popupOpenProfile, formElementProfile, formElementNewCard, cardOpenCreatePopupButton } from '../utils/constants.js';
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
+import UserInfo from '../components/UserInfo.js'
 
-
-
-
-
-// добавление карточек и отрисовка
-  
 const cardList = new Section({
   items: initialCards,
   renderer: (data) => {
@@ -49,9 +23,6 @@ function createCard(object) {
   return cardsNewElement;
 }
 
-
-// попапы
-
 const popupZoomImage = new PopupWithImage('.popup_type_zoom-image');
 popupZoomImage.setEventListeners();
 
@@ -59,99 +30,40 @@ function handleCardClick(object) {
   popupZoomImage.open(object);
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-}
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape);
-}
-
-function closePopupEditProfile() {
-  closePopup(profileEditPopup);
-};
-
-function openPopupEditProfile() {
-  openPopup(profileEditPopup);
-
-  nameInput.value = titleName.textContent;
-  jobInput.value = subtitleJob.textContent;
-};
-
-function openCardCreate() {
-  openPopup(cardCreatePopup);
-};
-
-function closeCardCreate() {
-  closePopup(cardCreatePopup);
-};
-
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened')
-    closePopup(openedPopup);
+const popupEditProfile = new PopupWithForm({
+  popupSelector: '.popup_type_profile-edit',
+  submitHandler: (data) => {
+    userInfo.setUserInfo(data);
   }
-} 
-
-popups.forEach(popup => {
-  popup.addEventListener('mousedown', evt => {
-    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__overlay')) {
-      closePopup(popup);
-    }
-  });
 });
 
-function submitHandlerProfile(evt) {
-  evt.preventDefault();
+popupEditProfile.setEventListeners();
 
-  titleName.textContent = nameInput.value;
-  subtitleJob.textContent = jobInput.value;
+const popupCreateCard = new PopupWithForm({
+  popupSelector: '.popup_type_create-card',
+  submitHandler: (data) => {
+    cardList.addItem(createCard(data));
+  }
+});
 
-  closePopup(profileEditPopup);
-};
+popupCreateCard.setEventListeners();
 
-function submitNewCardForm(evt) {
-  evt.preventDefault();
+const userInfo = new UserInfo({
+  userName: '.profile__title',
+  userJob: '.profile__subtitle'
+});
 
-  const userNewCard = {
-    name: cardNewName.value,
-    link: cardNewLink.value,
-  };
-
-	cards.prepend(createCard(userNewCard));
-
-  cardNewName.value = "";
-  cardNewLink.value = "";
-
-  closeCardCreate();
-
-  formValidatorCreateCard.disableSubmitButton()
-}
-
-cardOpenCreatePopupButton.addEventListener('click', openCardCreate);
-cardCloseCreatePopupButton.addEventListener('click', closeCardCreate);
-formElementNewCard.addEventListener('submit', submitNewCardForm);
-popupOpenProfile.addEventListener('click', openPopupEditProfile);
-popupCloseProfile.addEventListener('click', closePopupEditProfile);
-formElementProfile.addEventListener('submit', submitHandlerProfile);
-
-const formValidatorProfile = new FormValidator (settingsList, profileEditPopup);
-const formValidatorCreateCard = new FormValidator (settingsList, cardCreatePopup);
+const formValidatorProfile = new FormValidator (settingsList, formElementProfile);
+const formValidatorCreateCard = new FormValidator (settingsList, formElementNewCard);
 
 formValidatorCreateCard.enableValidation()
 formValidatorProfile.enableValidation()
+
+popupOpenProfile.addEventListener('click', () => {
+  popupEditProfile.setInputValues(userInfo.getUserInfo());
+  popupEditProfile.open();
+});
+
+cardOpenCreatePopupButton.addEventListener('click', () => {
+  popupCreateCard.open();
+});
