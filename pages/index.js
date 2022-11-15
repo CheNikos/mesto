@@ -9,8 +9,8 @@ import UserInfo from '../components/UserInfo.js'
 
 const cardList = new Section({
   items: initialCards,
-  renderer: (data) => {
-    cardList.addItem(createCard(data));
+  renderer: (object) => {
+    cardList.addItem(createCard(object));
   },
   containerSelector: '.elements'
 });
@@ -32,8 +32,8 @@ function handleCardClick(object) {
 
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_profile-edit',
-  submitHandler: (data) => {
-    userInfo.setUserInfo(data);
+  submitHandler: (object) => {
+    userInfo.setUserInfo(object);
   }
 });
 
@@ -41,8 +41,8 @@ popupEditProfile.setEventListeners();
 
 const popupCreateCard = new PopupWithForm({
   popupSelector: '.popup_type_create-card',
-  submitHandler: (data) => {
-    cardList.addItem(createCard(data));
+  submitHandler: (object) => {
+    cardList.addItem(createCard(object));
   }
 });
 
