@@ -1,4 +1,5 @@
 import Popup from './Popup.js'
+import UserInfo from './UserInfo.js';
 
 export default class PopupWithForm extends Popup {
     constructor({ popupSelector, submitHandler }) {
@@ -11,10 +12,10 @@ export default class PopupWithForm extends Popup {
     
       _getInputValues() {
         this._formValues = {};
-        this._inputList.forEach((input) => {
+        this._inputList.forEach(input => {
           this._formValues[input.name] = input.value;
         });
-    
+  
         return this._formValues;
       }
     
@@ -35,8 +36,13 @@ export default class PopupWithForm extends Popup {
       }
     
       setInputValues(object) {
-        this._inputList.reduce((input) => {
+        console.log(object);
+        this._inputList.forEach((input) => {
           input.value = object[input.name];
         });
+        // const inputs = Array.from(this._inputList)
+        // inputs[0].value = object.userName
+        // inputs[1].value = object.userJob
+        // return object
       }
 }

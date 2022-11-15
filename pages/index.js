@@ -39,6 +39,16 @@ const popupEditProfile = new PopupWithForm({
 
 popupEditProfile.setEventListeners();
 
+const userInfo = new UserInfo({
+  userName: '.profile__title',
+  userJob: '.profile__subtitle'
+});
+
+popupOpenProfile.addEventListener('click', () => {
+  popupEditProfile.setInputValues(userInfo.getUserInfo());
+  popupEditProfile.open();
+});
+
 const popupCreateCard = new PopupWithForm({
   popupSelector: '.popup_type_create-card',
   submitHandler: (object) => {
@@ -48,21 +58,11 @@ const popupCreateCard = new PopupWithForm({
 
 popupCreateCard.setEventListeners();
 
-const userInfo = new UserInfo({
-  userName: '.profile__title',
-  userJob: '.profile__subtitle'
-});
-
 const formValidatorProfile = new FormValidator (settingsList, formElementProfile);
 const formValidatorCreateCard = new FormValidator (settingsList, formElementNewCard);
 
 formValidatorCreateCard.enableValidation()
 formValidatorProfile.enableValidation()
-
-popupOpenProfile.addEventListener('click', () => {
-  popupEditProfile.setInputValues(userInfo.getUserInfo());
-  popupEditProfile.open();
-});
 
 cardOpenCreatePopupButton.addEventListener('click', () => {
   popupCreateCard.open();
