@@ -1,4 +1,5 @@
 import Popup from './Popup.js'
+import { nameInput, jobInput, cardNewName, cardNewLink } from '../utils/constants.js';
 
 export default class PopupWithForm extends Popup {
     constructor({ popupSelector, submitHandler }) {
@@ -10,14 +11,14 @@ export default class PopupWithForm extends Popup {
       }
     
       _getInputValues() {
-        this._formValues = {};
-        this._inputList.forEach(input => {
-          this._formValues[input.name] = input.value;
-        });
-  
-        return this._formValues;
+        return {
+          userName: nameInput.value,
+          userJob: jobInput.value,
+          name: cardNewName.value,
+          link: cardNewLink.value,
+        }
       }
-    
+
       setEventListeners() {
         super.setEventListeners();
     
@@ -33,15 +34,4 @@ export default class PopupWithForm extends Popup {
         super.close();
         this._form.reset();
       }
-    
-      // setInputValues(object) {
-      //   console.log(object);
-      //   this._inputList.forEach((input) => {
-      //     input.value = object[input.name];
-      //   });
-      //   // const inputs = Array.from(this._inputList)
-      //   // inputs[0].value = object.userName
-      //   // inputs[1].value = object.userJob
-      //   // return object
-      // }
 }

@@ -48,6 +48,7 @@ popupOpenProfile.addEventListener('click', () => {
   nameInput.value = userInfo.getUserInfo().userName;
   jobInput.value = userInfo.getUserInfo().userJob;
   popupEditProfile.open();
+  formValidatorProfile.disableSubmitButton()
 });
 
 const popupCreateCard = new PopupWithForm({
@@ -59,12 +60,13 @@ const popupCreateCard = new PopupWithForm({
 
 popupCreateCard.setEventListeners();
 
+cardOpenCreatePopupButton.addEventListener('click', () => {
+  popupCreateCard.open();
+  formValidatorCreateCard.disableSubmitButton()
+});
+
 const formValidatorProfile = new FormValidator (settingsList, formElementProfile);
 const formValidatorCreateCard = new FormValidator (settingsList, formElementNewCard);
 
 formValidatorCreateCard.enableValidation()
 formValidatorProfile.enableValidation()
-
-cardOpenCreatePopupButton.addEventListener('click', () => {
-  popupCreateCard.open();
-});
