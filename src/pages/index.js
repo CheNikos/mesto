@@ -39,6 +39,7 @@ const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_profile-edit',
   submitHandler: (object) => {
     userInfo.setUserInfo(object);
+    console.log(object);
   }
 });
 

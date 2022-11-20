@@ -1,5 +1,4 @@
 import Popup from './Popup.js'
-import { nameInput, jobInput, cardNewName, cardNewLink } from '../utils/constants.js';
 
 export default class PopupWithForm extends Popup {
     constructor({ popupSelector, submitHandler }) {
@@ -11,12 +10,12 @@ export default class PopupWithForm extends Popup {
       }
     
       _getInputValues() {
-        return {
-          userName: nameInput.value,
-          userJob: jobInput.value,
-          name: cardNewName.value,
-          link: cardNewLink.value,
-        }
+        this._inputsValues = {};
+        this._inputList.forEach(input => {
+          this._inputsValues[input.name] = input.value;
+        });
+        
+        return this._inputsValues;
       }
 
       setEventListeners() {
