@@ -20,17 +20,20 @@ const cardList = new Section({
 cardList.renderItems();
 
 function createCard(object) {
-  const cardsNewElement = new Card(object, handleCardClick).createCard();
-  
-  return cardsNewElement;
+  const cardsNewElement = new Card({
+    data: object,
+    templateSelector: '.element__template',
+    handleCardClick: (object) => {
+      popupZoomImage.open(object);
+    }
+  });
+
+  const card = cardsNewElement.createCard();
+  return card;
 }
 
 const popupZoomImage = new PopupWithImage('.popup_type_zoom-image');
 popupZoomImage.setEventListeners();
-
-function handleCardClick(object) {
-  popupZoomImage.open(object);
-};
 
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_profile-edit',

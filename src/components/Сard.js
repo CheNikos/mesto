@@ -1,14 +1,15 @@
 export default class Card {
-    constructor(object, handleCardClick) {
-      this._object = object
-      this._name = object.name
-      this._link = object.link
+    constructor({ data, templateSelector , handleCardClick }) {
+      this._data = data
+      this._name = data.name
+      this._link = data.link
       this._handleCardClick = handleCardClick
+      this._templateSelector = templateSelector
     }
 
     _getTemplate() {
       return document
-      .querySelector('.element__template')
+      .querySelector(this._templateSelector)
       .content
       .querySelector('.element')
       .cloneNode(true);
@@ -40,7 +41,7 @@ export default class Card {
       });
 
       this._zoomImage.addEventListener('click', () => {
-        this._handleCardClick(this._object)
+        this._handleCardClick(this._data)
       });
     }
 }
