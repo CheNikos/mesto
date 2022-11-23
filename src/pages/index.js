@@ -51,8 +51,7 @@ const userInfo = new UserInfo({
 });
 
 popupOpenProfile.addEventListener('click', () => {
-  nameInput.value = userInfo.getUserInfo().userName;
-  jobInput.value = userInfo.getUserInfo().userJob;
+  popupEditProfile.setInputValues(userInfo.getUserInfo())
   popupEditProfile.open();
   formValidatorProfile.disableSubmitButton()
 });
