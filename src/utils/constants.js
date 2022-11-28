@@ -28,3 +28,5 @@ export const zoomName = document.querySelector('.popup__name-zoom');
 export const cardCreatePopup = document.querySelector('.popup_type_create-card');
 export const cardOpenCreatePopupButton = document.querySelector('.profile__add-button');
 export const cardCloseCreatePopupButton = document.querySelector('.popup__close_new');
+export const avatarOpenChangePopup = document.querySelector('.profile__avatar');
+export const formElementChangePopup = document.querySelector('.popup__form_avatar');

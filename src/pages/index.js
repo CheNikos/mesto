@@ -4,7 +4,7 @@ import Card from '../components/Сard.js';
 import { initialCards } from '../utils/initialCards.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
-import { settingsList, popupOpenProfile, formElementProfile, formElementNewCard, cardOpenCreatePopupButton } from '../utils/constants.js';
+import { settingsList, popupOpenProfile, formElementProfile, formElementNewCard, cardOpenCreatePopupButton, avatarOpenChangePopup, formElementChangePopup } from '../utils/constants.js';
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
@@ -39,7 +39,6 @@ const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_profile-edit',
   submitHandler: (object) => {
     userInfo.setUserInfo(object);
-    console.log(object);
   }
 });
 
@@ -70,8 +69,27 @@ cardOpenCreatePopupButton.addEventListener('click', () => {
   formValidatorCreateCard.disableSubmitButton()
 });
 
+const popupAvatarChange = new PopupWithForm({
+  popupSelector: '.popup_type_avatar',
+  submitHandler: (object) => {
+    console.log(object);
+  }
+});
+
+popupAvatarChange.setEventListeners();
+
+avatarOpenChangePopup.addEventListener('click', () => {
+  popupAvatarChange.open();
+  formValidatorChangeAvatar.disableSubmitButton()
+});
+
 const formValidatorProfile = new FormValidator (settingsList, formElementProfile);
 const formValidatorCreateCard = new FormValidator (settingsList, formElementNewCard);
+const formValidatorChangeAvatar = new FormValidator (settingsList, formElementChangePopup);
 
 formValidatorCreateCard.enableValidation()
 formValidatorProfile.enableValidation()
+formValidatorChangeAvatar.enableValidation()
+
+
+
