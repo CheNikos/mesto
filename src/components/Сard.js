@@ -1,9 +1,10 @@
 export default class Card {
-    constructor({ data, templateSelector , handleCardClick }) {
+    constructor({ data, templateSelector , handleCardClick, handleCardDelete }) {
       this._data = data
       this._name = data.name
       this._link = data.link
       this._handleCardClick = handleCardClick
+      this._handleCardDelete = handleCardDelete
       this._templateSelector = templateSelector
     }
 
@@ -32,12 +33,13 @@ export default class Card {
       this._trashButton = this._element.querySelector('.element__trash');
       this._zoomImage = this._element.querySelector('.element__image');
 
+
       this._likeButton.addEventListener('click', () => {
         this._likeButton.classList.toggle('element__like_active');
       });
 
       this._trashButton.addEventListener('click', () => {
-        this._element.remove();
+        this._handleCardDelete();
       });
 
       this._zoomImage.addEventListener('click', () => {

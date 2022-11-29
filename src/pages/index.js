@@ -8,6 +8,7 @@ import { settingsList, popupOpenProfile, formElementProfile, formElementNewCard,
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
+import Api from '../components/Api.js'
 
 const cardList = new Section({
   items: initialCards,
@@ -25,12 +26,23 @@ function createCard(object) {
     templateSelector: '.element__template',
     handleCardClick: (object) => {
       popupZoomImage.open(object);
+    },
+    handleCardDelete: () => {
+      popupDeleteConfirm.open();
     }
   });
 
   const card = cardsNewElement.createCard();
   return card;
 }
+
+const popupDeleteConfirm = new PopupWithForm({
+  popupSelector: '.popup_type_confirm-delete',
+  submitHandler: () => {
+  }
+});
+
+popupDeleteConfirm.setEventListeners();
 
 const popupZoomImage = new PopupWithImage('.popup_type_zoom-image');
 popupZoomImage.setEventListeners();
@@ -93,4 +105,11 @@ formValidatorProfile.enableValidation()
 formValidatorChangeAvatar.enableValidation()
 
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
+  headers: {
+      authorization: "676e4f4d-fe5d-40df-8843-a5ad03a99947",
+      'Content-Type': 'application/json',
+  }
+})
 
