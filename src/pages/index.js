@@ -46,7 +46,8 @@ popupEditProfile.setEventListeners();
 
 const userInfo = new UserInfo({
   userName: '.profile__title',
-  userJob: '.profile__subtitle'
+  userJob: '.profile__subtitle',
+  avatarLink: '.profile__avatar'
 });
 
 popupOpenProfile.addEventListener('click', () => {
@@ -72,7 +73,7 @@ cardOpenCreatePopupButton.addEventListener('click', () => {
 const popupAvatarChange = new PopupWithForm({
   popupSelector: '.popup_type_avatar',
   submitHandler: (object) => {
-    console.log(object);
+    userInfo.setUserAvatar(object);
   }
 });
 
