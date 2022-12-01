@@ -30,3 +30,4 @@ export const cardOpenCreatePopupButton = document.querySelector('.profile__add-b
 export const cardCloseCreatePopupButton = document.querySelector('.popup__close_new');
 export const avatarOpenChangePopup = document.querySelector('.profile__avatar');
 export const formElementChangePopup = document.querySelector('.popup__form_avatar');
+export const popupConfirmDelete = document.querySelector('.popup_type_confirm-delete')

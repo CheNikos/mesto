@@ -9,6 +9,7 @@ import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
+import PopupWithConfirmation from '../components/PopupWithConfirmation'
 
 const cardList = new Section({
   items: initialCards,
@@ -36,10 +37,8 @@ function createCard(object) {
   return card;
 }
 
-const popupDeleteConfirm = new PopupWithForm({
+const popupDeleteConfirm = new PopupWithConfirmation({
   popupSelector: '.popup_type_confirm-delete',
-  submitHandler: () => {
-  }
 });
 
 popupDeleteConfirm.setEventListeners();
