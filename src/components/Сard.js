@@ -28,11 +28,6 @@ export default class Card {
       return this._element; 
     }
 
-    delete() {
-      this._element.remove();
-      this._element = null;
-    }
-
     _setEventListeners() {
       this._likeButton = this._element.querySelector('.element__like');
       this._trashButton = this._element.querySelector('.element__trash');

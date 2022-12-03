@@ -116,3 +116,10 @@ const api = new Api({
   }
 })
 
+const a = api.getUserInfo();
+const b = api.getInitialCards();
+const c = api.setUserInfo()
+
+
+console.log(c);
+
