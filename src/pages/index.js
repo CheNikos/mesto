@@ -4,7 +4,7 @@ import Card from '../components/Сard.js';
 import { initialCards } from '../utils/initialCards.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
-import { settingsList, popupOpenProfile, formElementProfile, formElementNewCard, cardOpenCreatePopupButton, avatarOpenChangePopup, formElementChangePopup } from '../utils/constants.js';
+import { settingsList, popupOpenProfile, formElementProfile, formElementNewCard, cardOpenCreatePopupButton, avatarOpenChangePopup, formElementChangePopup, popupConfirmDelete } from '../utils/constants.js';
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
@@ -28,8 +28,12 @@ function createCard(object) {
     handleCardClick: (object) => {
       popupZoomImage.open(object);
     },
-    handleCardDelete: () => {
+    handleCardDelete: (element) => {
       popupDeleteConfirm.open();
+      popupConfirmDelete.addEventListener('click', () => {
+        element.remove();
+        popupDeleteConfirm.close()
+      })
     }
   });
 
@@ -38,7 +42,7 @@ function createCard(object) {
 }
 
 const popupDeleteConfirm = new PopupWithConfirmation({
-  popupSelector: '.popup_type_confirm-delete',
+  popupSelector: '.popup_type_confirm-delete'
 });
 
 popupDeleteConfirm.setEventListeners();

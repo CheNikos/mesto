@@ -44,7 +44,7 @@ export default class Card {
       });
 
       this._trashButton.addEventListener('click', () => {
-        this._handleCardDelete();
+        this._handleCardDelete(this._element);
       });
 
       this._zoomImage.addEventListener('click', () => {
