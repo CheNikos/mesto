@@ -9,6 +9,7 @@ import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
 import PopupWithConfirmation from '../components/PopupWithConfirmation'
+import { data } from 'autoprefixer';
 
 const cardList = new Section({
   renderer: (object) => {
@@ -49,7 +50,14 @@ popupZoomImage.setEventListeners();
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_profile-edit',
   submitHandler: (object) => {
-    userInfo.setUserInfo(object);
+    api.updateUserInfo(object)
+      .then((object) => {
+        userInfo.setUserInfo(object);
+        popupEditProfile.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
   }
 });
 

@@ -29,4 +29,18 @@ export default class Api {
           return this._checkResponse(res);
         })
       }
+      
+    updateUserInfo(object) {
+        return fetch(`${this._baseUrl}/users/me`, {
+          method: 'PATCH',
+          headers: this._headers,
+          body: JSON.stringify({
+            name: object.name,
+            about: object.about
+          })
+        })
+        .then(res => {
+          return this._checkResponse(res);
+        })
+      }
 }
