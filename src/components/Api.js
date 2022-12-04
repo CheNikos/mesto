@@ -29,18 +29,4 @@ export default class Api {
           return this._checkResponse(res);
         })
       }
-
-    setUserInfo(userName, userJob) {
-        return fetch(`${this._baseUrl}/users/me`, {
-            method: 'PATCH',
-            headers: this._headers,
-            body: JSON.stringify({
-                name: userName,
-                about: userJob
-            }),
-        })
-        .then(res => {
-          return this._checkResponse(res);
-        })
-    }
 }
