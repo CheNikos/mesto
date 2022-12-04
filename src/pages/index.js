@@ -1,7 +1,6 @@
 import './index.css'
 
 import Card from '../components/Сard.js';
-import { initialCards } from '../utils/initialCards.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import { settingsList, popupOpenProfile, formElementProfile, formElementNewCard, cardOpenCreatePopupButton, avatarOpenChangePopup, formElementChangePopup, popupConfirmDelete } from '../utils/constants.js';
@@ -12,14 +11,11 @@ import Api from '../components/Api.js'
 import PopupWithConfirmation from '../components/PopupWithConfirmation'
 
 const cardList = new Section({
-  items: initialCards,
   renderer: (object) => {
     cardList.addItem(createCard(object));
   },
   containerSelector: '.elements'
 });
-  
-cardList.renderItems();
 
 function createCard(object) {
   const cardsNewElement = new Card({
@@ -60,9 +56,9 @@ const popupEditProfile = new PopupWithForm({
 popupEditProfile.setEventListeners();
 
 const userInfo = new UserInfo({
-  userName: '.profile__title',
-  userJob: '.profile__subtitle',
-  avatarLink: '.profile__avatar'
+  name: '.profile__title',
+  about: '.profile__subtitle',
+  avatar: '.profile__avatar'
 });
 
 popupOpenProfile.addEventListener('click', () => {
@@ -116,7 +112,11 @@ const api = new Api({
   }
 })
 
-const a = api.getUserInfo();
-const b = api.getInitialCards();
-
-
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([initialCards, userProfile]) => {
+    userInfo.setUserInfo(userProfile);
+    cardList.renderItems(initialCards.reverse());
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  });
