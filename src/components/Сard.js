@@ -1,11 +1,16 @@
 export default class Card {
-    constructor({ data, templateSelector , handleCardClick, handleCardDelete }) {
+    constructor({ data, templateSelector , handleCardClick, handleCardDelete, handlePutLike, handleRemoveLike, userId }) {
       this._data = data
       this._name = data.name
       this._link = data.link
       this._handleCardClick = handleCardClick
       this._handleCardDelete = handleCardDelete
       this._templateSelector = templateSelector
+      this._cardId = data._id
+      this._handlePutLike = handlePutLike
+      this._handleRemoveLike = handleRemoveLike
+      this._likes = data.likes;
+      this._userId = userId
     }
 
     _getTemplate() {
@@ -22,10 +27,16 @@ export default class Card {
       this._element.querySelector('.element__image').src = this._link;
       this._element.querySelector('.element__image').alt = this._name;
       this._element.querySelector('.element__title').textContent = this._name;
+      this._likesNumber = this._element.querySelector('.element__numbers');
+      this._likesNumber.textContent = this._likes.length;
 
       this._setEventListeners();
   
       return this._element; 
+    }
+
+    deleteCard() {
+      this._element.closest('.element').remove();
     }
 
     _setEventListeners() {
@@ -35,15 +46,25 @@ export default class Card {
 
 
       this._likeButton.addEventListener('click', () => {
-        this._likeButton.classList.toggle('element__like_active');
+        if (this._likeButton.classList.contains('element__like_active')) {
+          this._handleRemoveLike(this._cardId);
+        } else {
+          this._handlePutLike(this._cardId);
+        }
       });
 
       this._trashButton.addEventListener('click', () => {
-        this._handleCardDelete(this._element);
+        this._handleCardDelete(this._cardId);
       });
 
       this._zoomImage.addEventListener('click', () => {
         this._handleCardClick(this._data)
       });
+    }
+
+    handleLikeCard(data) {
+      this._likes = data.likes;
+      this._likesNumber.textContent = this._likes.length;
+      this._likeButton.classList.toggle('element__like_active');
     }
 }

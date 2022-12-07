@@ -9,7 +9,26 @@ import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
 import PopupWithConfirmation from '../components/PopupWithConfirmation'
-import { data } from 'autoprefixer';
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
+  headers: {
+      authorization: "676e4f4d-fe5d-40df-8843-a5ad03a99947",
+      'Content-Type': 'application/json',
+  }
+})
+
+let userId;
+
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([initialCards, userProfile]) => {
+    userInfo.setUserInfo(userProfile);
+    userId = userProfile._id;
+    cardList.renderItems(initialCards.reverse());
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  });
 
 const cardList = new Section({
   renderer: (object) => {
@@ -21,16 +40,41 @@ const cardList = new Section({
 function createCard(object) {
   const cardsNewElement = new Card({
     data: object,
+    userId: userId,
     templateSelector: '.element__template',
     handleCardClick: (object) => {
       popupZoomImage.open(object);
     },
-    handleCardDelete: (element) => {
+    handleCardDelete: (cardId) => {
       popupDeleteConfirm.open();
-      popupConfirmDelete.addEventListener('click', () => {
-        element.remove();
-        popupDeleteConfirm.close()
-      })
+      popupDeleteConfirm.submitDelete(() => {
+        api.deleteCard(cardId)
+          .then(() => {
+            popupDeleteConfirm.close();
+            cardsNewElement.deleteCard();
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      });
+    },
+    handlePutLike: (cardId) => {
+      api.putLike(cardId)
+        .then((data) => {
+          cardsNewElement.handleLikeCard(data);
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        });
+    },
+    handleRemoveLike: (cardId) => {
+      api.deleteLike(cardId)
+        .then((data) => {
+          cardsNewElement.handleLikeCard(data);
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        });
     }
   });
 
@@ -78,7 +122,14 @@ popupOpenProfile.addEventListener('click', () => {
 const popupCreateCard = new PopupWithForm({
   popupSelector: '.popup_type_create-card',
   submitHandler: (object) => {
-    cardList.addItem(createCard(object));
+    api.addNewCard(object)
+      .then((object) => {
+        cardList.addItem(createCard(object));
+        popupCreateCard.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
   }
 });
 
@@ -110,21 +161,3 @@ const formValidatorChangeAvatar = new FormValidator (settingsList, formElementCh
 formValidatorCreateCard.enableValidation()
 formValidatorProfile.enableValidation()
 formValidatorChangeAvatar.enableValidation()
-
-
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
-  headers: {
-      authorization: "676e4f4d-fe5d-40df-8843-a5ad03a99947",
-      'Content-Type': 'application/json',
-  }
-})
-
-Promise.all([api.getInitialCards(), api.getUserInfo()])
-  .then(([initialCards, userProfile]) => {
-    userInfo.setUserInfo(userProfile);
-    cardList.renderItems(initialCards.reverse());
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  });

@@ -1,3 +1,4 @@
 .element__likes {
-    max-width: 35px;
+    height: 35px;
+    display: grid;
 }
