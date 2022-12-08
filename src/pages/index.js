@@ -3,7 +3,7 @@ import './index.css'
 import Card from '../components/Сard.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
-import { settingsList, popupOpenProfile, formElementProfile, formElementNewCard, cardOpenCreatePopupButton, avatarOpenChangePopup, formElementChangePopup, popupConfirmDelete } from '../utils/constants.js';
+import { settingsList, popupOpenProfile, formElementProfile, formElementNewCard, cardOpenCreatePopupButton, avatarOpenChangePopup, formElementChangeAvatar} from '../utils/constants.js';
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
@@ -143,7 +143,14 @@ cardOpenCreatePopupButton.addEventListener('click', () => {
 const popupAvatarChange = new PopupWithForm({
   popupSelector: '.popup_type_avatar',
   submitHandler: (object) => {
-    userInfo.setUserAvatar(object);
+    api.editAvatar(object)
+      .then((object) => {
+        avatar.src = object.avatar;
+        popupAvatarChange.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
   }
 });
 
@@ -156,7 +163,7 @@ avatarOpenChangePopup.addEventListener('click', () => {
 
 const formValidatorProfile = new FormValidator (settingsList, formElementProfile);
 const formValidatorCreateCard = new FormValidator (settingsList, formElementNewCard);
-const formValidatorChangeAvatar = new FormValidator (settingsList, formElementChangePopup);
+const formValidatorChangeAvatar = new FormValidator (settingsList, formElementChangeAvatar);
 
 formValidatorCreateCard.enableValidation()
 formValidatorProfile.enableValidation()

@@ -87,12 +87,12 @@ export default class Api {
           return this._checkResponse(res);
         })
       }
-    editAvatar(data) {
+    editAvatar(object) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
           method: 'PATCH',
           headers: this._headers,
           body: JSON.stringify({
-            avatar: data.avatar
+            avatar: object.avatar
           })
         })
         .then(res => {
