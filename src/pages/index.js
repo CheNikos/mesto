@@ -94,6 +94,7 @@ popupZoomImage.setEventListeners();
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_profile-edit',
   submitHandler: (object) => {
+    popupEditProfile.loadForm(true)
     api.updateUserInfo(object)
       .then((object) => {
         userInfo.setUserInfo(object);
@@ -101,6 +102,9 @@ const popupEditProfile = new PopupWithForm({
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        popupEditProfile.loadForm(false)
       })
   }
 });
@@ -122,6 +126,7 @@ popupOpenProfile.addEventListener('click', () => {
 const popupCreateCard = new PopupWithForm({
   popupSelector: '.popup_type_create-card',
   submitHandler: (object) => {
+    popupCreateCard.loadForm(true)
     api.addNewCard(object)
       .then((object) => {
         cardList.addItem(createCard(object));
@@ -129,6 +134,9 @@ const popupCreateCard = new PopupWithForm({
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        popupCreateCard.loadForm(false)
       })
   }
 });
@@ -143,6 +151,7 @@ cardOpenCreatePopupButton.addEventListener('click', () => {
 const popupAvatarChange = new PopupWithForm({
   popupSelector: '.popup_type_avatar',
   submitHandler: (object) => {
+    popupAvatarChange.loadForm(true)
     api.editAvatar(object)
       .then((object) => {
         avatar.src = object.avatar;
@@ -150,6 +159,9 @@ const popupAvatarChange = new PopupWithForm({
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        popupAvatarChange.loadForm(false)
       })
   }
 });
