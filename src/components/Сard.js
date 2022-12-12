@@ -32,8 +32,9 @@ export default class Card {
   createCard() {
     this._element = this._getTemplate();
 
-    this._element.querySelector(".element__image").src = this._link;
-    this._element.querySelector(".element__image").alt = this._name;
+    this._cardImage = this._element.querySelector(".element__image");
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector(".element__title").textContent = this._name;
     this._likesNumber = this._element.querySelector(".element__numbers");
     this._likesNumber.textContent = this._likes.length;
@@ -51,7 +52,6 @@ export default class Card {
 
   _setEventListeners() {
     this._likeButton = this._element.querySelector(".element__like");
-    this._zoomImage = this._element.querySelector(".element__image");
 
     this._likeButton.addEventListener("click", () => {
       if (this._likeButton.classList.contains("element__like_active")) {
@@ -65,7 +65,7 @@ export default class Card {
       this._handleCardDelete(this._cardId);
     });
 
-    this._zoomImage.addEventListener("click", () => {
+    this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._data);
     });
   }
